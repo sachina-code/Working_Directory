@@ -1,0 +1,1662 @@
+traceoptions {
+    file isis size 10m files 5 world-readable;
+    flag error detail;
+    flag state detail;
+    flag all;
+}
+export export-stat-subnet;
+lsp-lifetime 65535;
+spf-options {
+    delay 50;
+    holddown 5000;
+    rapid-runs 3;
+}
+overload {
+    timeout 300;
+    advertise-high-metrics;
+}
+level 1 disable;
+level 2 wide-metrics-only;
+interface xe-1/1/2.0 {
+    passive;
+}
+interface xe-8/1/0.100 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$D.iqPn6C1ESs2JUi.TQ"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.101 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$AnNBpOIleM-bY5Q6CpBhc"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.102 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$0jU6BRcMWXw2oFnAuBErl"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.103 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$mfQ3puByeMJGH.fz/9"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.104 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$cHqyeM-dwJUituIhyKLX"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.105 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$w4Y4JkqPn9tWL-bYoUD"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.106 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$dVbY4jiqzn9KMx-b2JZ"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.107 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$V8w2oiH.F6CvW7dwgZG"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.108 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$k.fQCAuhye4aDH.53n"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.109 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$86fXNVoaG.fQhSKWX-sY"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.110 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$V4w2oiH.F6CvW7dwgZG"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.111 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$EELcrK7NVoZDCtBRclW8"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.112 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$a/ZDHTQ3pOI-V2oZj.m"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.113 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$CT8jt01rlvNVsfTn9tOEh"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.114 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$exLv8xsY4jkmBISlvL-d"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.115 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$RlUhyex7d4JU9AOIhrMW"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.116 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$ikm5/9tRcr24GjkPzF"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.117 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$P5znu01rKWZUkm5F9C"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.118 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$dwbY4jiqzn9KMx-b2JZ"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.119 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$P5znu01rKWZUkm5F9C"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.120 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$a-ZDHTQ3pOI-V2oZj.m"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.121 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$pB2i01EKv8VsgQF9t0ISy"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.122 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$3N/z6CpEhy8x-k.TF6AOB"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.123 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$LRTx-baJUm5zcyv8xdY2"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.124 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$4jaGjf5zAuB7-sgaUkq"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.125 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$rvreMLbw2Uiq0BhyeW7N"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.126 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$c.LyeM-dwJUituIhyKLX"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.127 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$M858x-g4Jkm5Rhlv87bw"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.128 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$dtbY4jiqzn9KMx-b2JZ"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.129 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$Rkihyex7d4JU9AOIhrMW"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.130 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$aIZDHTQ3pOI-V2oZj.m"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.131 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$zu/L3/AIRcML7ikfQ39u0"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.132 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$ZEUiqzF601EVw4JUHPf"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.133 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$-0VsgDjkQ3/evXNVYaJ"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.134 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$c7syeM-dwJUituIhyKLX"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.135 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$g5oZDPfQCpOxNw2oGHk"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.136 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$04JFBRcMWXw2oFnAuBErl"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.137 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$mfQ3puByeMJGH.fz/9"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.138 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$lCTKWXwsgDH.O1crK8N-"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.139 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$Nodw2UDHTF6lKL7dsoa"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.140 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$yRQlv8VbYGjkuOESlMx7"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.141 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$L2Vx-baJUm5zcyv8xdY2"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.142 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$0-DaBRcMWXw2oFnAuBErl"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.143 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$axZDHTQ3pOI-V2oZj.m"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.144 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$mfQ3puByeMJGH.fz/9"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.145 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$hHgSlvN-baGjAp1ESe8L"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.146 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$xaKNVsZGjfQ3ylWXNbg4"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.147 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$ICKESlXx-gaG/C01EyvM"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.148 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$sI2oZq.f6Cp8Xdw2aDj"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.149 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$cnJyeM-dwJUituIhyKLX"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.150 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$Y-gaG.m5/AuLxVsgJji"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.151 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$avZDHTQ3pOI-V2oZj.m"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.152 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$uN/tOIhvMLbY4z3CpORyr"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.153 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$wtY4JkqPn9tWL-bYoUD"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.154 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$mfQ3puByeMJGH.fz/9"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.155 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$38uV6CpEhy8x-k.TF6AOB"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.156 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$ORTu1ESW8xsga36t01hle"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.157 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$Y/gaG.m5/AuLxVsgJji"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.158 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$3btt6CpEhy8x-k.TF6AOB"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.159 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$BVFIhy8L7Y4Jn/pOIceK"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.160 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$HqPT9CpESlgoUiqfF3"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.161 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$vzEWXN2gaH.fIErKWxVb"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.162 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$AfH0pOIleM-bY5Q6CpBhc"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.163 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$jOH.f6/AIhyYgZDHmQz"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.164 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$Ngdw2UDHTF6lKL7dsoa"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.165 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$EtVcrK7NVoZDCtBRclW8"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.166 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$KUgML7Y2oiqP1RyeMXdV"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.167 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$4OaGjf5zAuB7-sgaUkq"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.168 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$NIdw2UDHTF6lKL7dsoa"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.169 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$RMjhyex7d4JU9AOIhrMW"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.170 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$AXgJpOIleM-bY5Q6CpBhc"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.171 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$ZFUiqzF601EVw4JUHPf"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.172 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$Q1FEF6C1Ihv8xjHPTF/pu"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.173 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$.PTFtpOSlvaZiqPQ6/"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.174 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$vouWXN2gaH.fIErKWxVb"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.175 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$eizv8xsY4jkmBISlvL-d"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.176 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$8OFXNVoaG.fQhSKWX-sY"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.177 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$1SQRcrLXN2oZ69uBRSKv"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.178 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$Nkdw2UDHTF6lKL7dsoa"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.179 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$yf8lv8VbYGjkuOESlMx7"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.180 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$BbZIhy8L7Y4Jn/pOIceK"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.181 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$SmFrKWdVsZDHp0RcrvXx"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.182 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$UHjkm3n9BRcwYaGjq5T"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.183 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$O/8M1ESW8xsga36t01hle"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.184 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$uB19OIhvMLbY4z3CpORyr"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.185 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$6C8b9t0cSlXNV.Pzn9p1I"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.186 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$DZiqPn6C1ESs2JUi.TQ"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.187 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$Y1gaG.m5/AuLxVsgJji"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.188 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$Viw2oiH.F6CvW7dwgZG"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.189 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$vbMWXN2gaH.fIErKWxVb"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.190 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$zTvE3/AIRcML7ikfQ39u0"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.191 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$8z8XNVoaG.fQhSKWX-sY"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.192 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$OxL21ESW8xsga36t01hle"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.193 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$vQxWXN2gaH.fIErKWxVb"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.194 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$1/3RcrLXN2oZ69uBRSKv"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.195 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$JuGjkQznuBRdbgaGimP"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.196 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$UUjkm3n9BRcwYaGjq5T"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.197 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$0tFLBRcMWXw2oFnAuBErl"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.198 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$k.fQCAuhye4aDH.53n"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface xe-8/1/0.199 {
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$pvD501EKv8VsgQF9t0ISy"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface ae1.0 {
+    ldp-synchronization;
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$zGHX3/AIRcML7ikfQ39u0"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface ae2.0 {
+    ldp-synchronization;
+    point-to-point;
+    family inet {
+        bfd-liveness-detection {
+            minimum-interval 100;
+            multiplier 3;
+            no-adaptation;
+        }
+    }
+    level 2 {
+        metric 10000;
+        hello-authentication-key "$9$RBhhyex7d4JU9AOIhrMW"; ## SECRET-DATA
+        hello-authentication-type md5;
+        hold-time 3;
+    }
+}
+interface irb.15 {
+    passive;
+}
+interface lo0.0;
+
+{master}

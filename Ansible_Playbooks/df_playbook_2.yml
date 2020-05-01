@@ -1,0 +1,6 @@
+- hosts: 10.85.88.122
+  
+  tasks:
+     - name: check disk usage
+       shell: df > df_temp.txt
+

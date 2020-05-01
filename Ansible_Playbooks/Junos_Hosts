@@ -1,0 +1,5 @@
+[junos_devices]
+J1 ansible_host=10.85.88.25
+[junos_devices:vars]
+username=stc
+password=Password1

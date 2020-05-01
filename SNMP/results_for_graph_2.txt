@@ -1,0 +1,4 @@
+{'Time': '2020-04-08T05:58:49.012806', 'hostname': 'WF-CSIM-MX2020-1-STC-re0', 'Interface_In_Octet': '2810611223', 'Interface_In_uPackets': '3321187484', 'Interface_Out_Octet': '1120017006', 'Interface_Out_uPackets': '1136817163'}
+{'Time': '2020-04-08T05:59:02.955589', 'hostname': 'WF-CSIM-MX2020-1-STC-re0', 'Interface_In_Octet': '3745210764', 'Interface_In_uPackets': '3336367411', 'Interface_Out_Octet': '3629171701', 'Interface_Out_uPackets': '1157142015'}
+{'Time': '2020-04-08T05:59:09.855022', 'hostname': 'WF-CSIM-MX2020-1-STC-re0', 'Interface_In_Octet': '1689661498', 'Interface_In_uPackets': '3343955631', 'Interface_Out_Octet': '2250238492', 'Interface_Out_uPackets': '1167302111'}
+{'Time': '2020-04-08T05:59:13.825079', 'hostname': 'WF-CSIM-MX2020-1-STC-re0', 'Interface_In_Octet': '1689661498', 'Interface_In_uPackets': '3343955631', 'Interface_Out_Octet': '2250238492', 'Interface_Out_uPackets': '1167302111'}

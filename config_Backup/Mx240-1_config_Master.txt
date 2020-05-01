@@ -1,0 +1,3443 @@
+## Last commit: 2020-04-13 10:16:31 AST by root
+version 18.4R3-S1.3;
+groups {
+    re0 {
+        system {
+            host-name STC-MX240-1_re0;
+        }
+        interfaces {
+            fxp0 {
+                unit 0 {
+                    family inet {
+                        filter {
+                            inactive: input PROTECT-fxp;
+                        }
+                        address 10.85.88.16/25;
+                    }
+                }
+            }
+        }
+    }
+    juniper-ais;
+    Unused_Port {
+        interfaces {
+            <*> {
+                description "**** Free ****";
+                disable;
+            }
+        }
+    }
+    SYSLOG-PARAMETERS {
+        system {
+            syslog {
+                host <*> {
+                    log-prefix STC-MX240-1;
+                }
+            }
+        }
+    }
+}
+apply-groups re0;
+system {
+    commit {
+        fast-synchronize;
+        synchronize;
+    }
+    login {
+        retry-options {
+            tries-before-disconnect 5;
+            backoff-threshold 3;
+            backoff-factor 5;
+            minimum-time 25;
+            lockout-period 4;
+        }
+        class admin {
+            idle-timeout 30;
+            permissions all;
+        }
+        class read-only-class {
+            idle-timeout 10;
+            permissions [ view view-configuration ];
+            allow-commands "(ping)|(traceroute)";
+            deny-commands "show route resolution*|show isis backup spf results*";
+        }
+        class shell {
+            permissions all;
+        }
+        user JUNOS-RW {
+            uid 2222;
+            class admin;
+        }
+        user automation {
+            uid 2009;
+            class read-only-class;
+            authentication {
+                encrypted-password "$sha1$19911$61zi66Xv$HdzLpKTOY23lx.2zrNWqrGzsTlsH"; ## SECRET-DATA
+            }
+        }
+        user btodorovic {
+            full-name "Berislav Todorovic, JNPR PS";
+            uid 2048;
+            class super-user;
+            authentication {
+                ssh-rsa "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEAndoan2TzmZp3J3UJjlXksF1DcJhntlLTs9mEVkY/0sTXTgqe75cVB9cwOY8Vsj9l3p6yOpO0cMwbxiWmLmnYzBDoeyTAKzFLr/Ccdm0NhMLFnP/pyewShQJNOJLPCERNxAWCQlrQnXE+UvqrY45fOQc4NnHhggBK3IdB6AcHOn8="; ## SECRET-DATA
+            }
+        }
+        user ccl {
+            uid 2001;
+            class super-user;
+            authentication {
+                encrypted-password "$5$Fk5yJSd4$QnpJfLKoj2iAjXZ6cfqHT4Petg8ROD9xVbFXQTHdW94"; ## SECRET-DATA
+            }
+        }
+        user dev {
+            uid 2013;
+            class super-user;
+            authentication {
+                encrypted-password "$sha1$22161$mD9HL0Z1$i/1M/WcGtbL1HfEgxpU.m.SCUV1i"; ## SECRET-DATA
+            }
+        }
+        user eschornig {
+            full-name "Eduard Schornig => eschornig@juniper.net";
+            uid 2006;
+            class super-user;
+            authentication {
+                encrypted-password "$sha1$22059$DnRPsTa0$GMiyNL.alV3f55NX5/eK9k.tuvKt"; ## SECRET-DATA
+            }
+        }
+        user ftp {
+            uid 2011;
+            class read-only;
+        }
+        user mansour {
+            uid 2004;
+            class super-user;
+            authentication {
+                encrypted-password "$sha1$20972$w54O3CJH$7u16GMxw.tF2VC.SBV3f0gBMU6tF"; ## SECRET-DATA
+            }
+        }
+        user premesh {
+            uid 2005;
+            class super-user;
+            authentication {
+                encrypted-password "$1$AHicUq0R$M/stNnSm9w6zK8rPoGdd61"; ## SECRET-DATA
+            }
+        }
+        user regress {
+            uid 2000;
+            class super-user;
+            shell sh;
+            authentication {
+                encrypted-password "$1$bct3vNM5$Ds1QYLKnL04fFMhQADjqf1"; ## SECRET-DATA
+            }
+        }
+        user sheir {
+            uid 2007;
+            class super-user;
+            authentication {
+                encrypted-password "$sha1$21165$2HUKcB7K$UGPo9WErRvrbyUSjT6BWB5W0FbV5"; ## SECRET-DATA
+            }
+        }
+        user shell {
+            uid 2003;
+            class shell;
+            shell sh;
+            authentication {
+                encrypted-password "$sha1$21715$4j1B3Irf$nmhq.7o4bEHuLgdH3gr7fUnTODpk"; ## SECRET-DATA
+            }
+        }
+        user stc {
+            uid 2002;
+            class super-user;
+            authentication {
+                encrypted-password "$sha1$21508$YIg7O/dp$fVvK6ghfwLj9cZ89FkMOdeKXPNAa"; ## SECRET-DATA
+            }
+        }
+        user test {
+            uid 2901;
+            class super-user;
+            authentication {
+                encrypted-password "$5$t7ifGlXr$9kl79xSatDPP7f.LcXzXiMS0yz6LFRYcaTHNPHZAFo/"; ## SECRET-DATA
+            }
+        }
+        user test1 {
+            uid 2010;
+            class read-only-class;
+            authentication {
+                encrypted-password "$sha1$20169$.ooAYs6I$7H/QfcmwLJgVZw7OXurQ8esKk/pg"; ## SECRET-DATA
+            }
+        }
+        user venkata {
+            uid 2012;
+            class read-only-class;
+            authentication {
+                encrypted-password "$sha1$24367$1Ri8D/yx$hYtx5XLOl9B1F/RMtsZN8HyurbgJ"; ## SECRET-DATA
+            }
+        }
+        user zafer {
+            uid 2008;
+            class super-user;
+            authentication {
+                encrypted-password "$sha1$21568$ozWmYmSi$bIpaJagZjrhGLnv4CV9gAIMiPqMc"; ## SECRET-DATA
+            }
+        }
+        password {
+            minimum-length 8;
+            minimum-numerics 1;
+            minimum-upper-cases 1;
+            minimum-lower-cases 1;
+            format sha1;
+        }
+        message "\n                ===========================================================\n                =                                                         =\n                =  This is a SAUDI NET device, which may be accessed      =\n                =  and used only by SAUDI NET authorized personnel.       =\n                =  Unauthorized access or use of this device may subject  =\n                =  violators to criminal, civil, and/or administrative    =\n                =  action. Any information on this device may be          =\n                =  intercepted, recorded, read, copied, and disclosed by  =\n                =  and to authorized personnel for official purposes,     =\n                =  including criminal investigations. Access or use of    =\n                =  this device by any person whether authorized or        =\n                =  unauthorized constitutes consent to these terms.       =\n                =                                                         =\n                ===========================================================\n";
+    }
+    root-authentication {
+        encrypted-password "$sha1$24177$2NUMlMRH$ch3XsR0L8h/SZNZezkFw1uD6AeYm"; ## SECRET-DATA
+    }
+    services {
+        ssh {
+            root-login deny;
+            no-tcp-forwarding;
+            protocol-version v2;
+            inactive: ciphers [ aes128-ctr aes192-ctr aes256-ctr ];
+            inactive: macs [ hmac-sha2-256 hmac-sha2-256-96 hmac-sha2-512 hmac-sha2-512-96 ];
+            connection-limit 10;
+            rate-limit 20;
+        }
+        netconf {
+            ssh {
+                connection-limit 10;
+                rate-limit 4;
+            }
+        }
+    }
+    time-zone Asia/Riyadh;
+    switchover-on-routing-crash;
+    no-multicast-echo;
+    no-redirects;
+    no-redirects-ipv6;
+    no-ping-record-route;
+    no-ping-time-stamp;
+    kernel-replication {
+        inactive: traceoptions {
+            file ksyncd size 100m files 20;
+            level update;
+            flag all;
+        }
+    }
+    internet-options {
+        icmpv4-rate-limit packet-rate 100 bucket-size 3;
+        icmpv6-rate-limit packet-rate 100 bucket-size 3;
+        path-mtu-discovery;
+        no-source-quench;
+        tcp-drop-synfin-set;
+        no-tcp-reset drop-all-tcp;
+    }
+    authentication-order tacplus;
+    location {
+        latitude 24,45,36.09;
+        longitude 46,41,35.88;
+        building "Mursalat 116-33-301 -- Rack 00.S.20/01";
+    }
+    ports {
+        console {
+            log-out-on-disconnect;
+            type vt100;
+        }
+        auxiliary {
+            disable;
+            insecure;
+        }
+    }
+    tacplus-server {
+        10.141.48.110 {
+            port 49;
+            timeout 45;
+            single-connection;
+            source-address 10.188.194.9;
+        }
+        10.171.1.251 {
+            port 49;
+            timeout 45;
+            single-connection;
+            source-address 10.188.194.9;
+        }
+    }
+    accounting {
+        events [ login change-log interactive-commands ];
+        destination {
+            tacplus {
+                server {
+                    10.141.48.110 {
+                        port 49;
+                        single-connection;
+                        source-address 10.188.194.9;
+                    }
+                    10.171.1.251 {
+                        port 49;
+                        single-connection;
+                        source-address 10.188.194.9;
+                    }
+                }
+            }
+        }
+    }
+    scripts {
+        inactive: commit {
+            file IGW-RR-no-delete.slax {
+                optional;
+            }
+            file commit_comment-v3.slax {
+                optional;
+            }
+        }
+        op {
+            file DOM.slax;
+        }
+        synchronize;
+    }
+    syslog {
+        apply-groups SYSLOG-PARAMETERS;
+        archive size 1m files 10;
+        user * {
+            any critical;
+        }
+        host other-routing-engine {
+            any error;
+            log-prefix other-RE;
+        }
+        host 10.200.87.1 {
+            any info;
+            authorization info;
+            daemon any;
+            ftp none;
+            ntp notice;
+            kernel any;
+            dfc none;
+            firewall info;
+            pfe info;
+            change-log any;
+            interactive-commands any;
+            allow-duplicates;
+            explicit-priority;
+            structured-data;
+        }
+        file messages {
+            any warning;
+            authorization none;
+            match "!(.*/usr/sbin/sshd)";
+            archive world-readable;
+        }
+        file interactive-commands {
+            interactive-commands any;
+        }
+        file CHANGES {
+            change-log any;
+        }
+        file syslog {
+            any info;
+            firewall none;
+            archive size 10m files 10;
+        }
+        file security {
+            authorization info;
+            explicit-priority;
+        }
+        file commands {
+            change-log info;
+            interactive-commands info;
+            archive size 10m files 10;
+            explicit-priority;
+        }
+        file firewall-filter-log {
+            firewall any;
+            explicit-priority;
+        }
+        file default-log-messages {
+            any any;
+            match "(requested 'commit' operation)|(copying configuration to juniper.save)|(commit complete)|ifAdminStatus|(FRU power)|(FRU removal)|(FRU insertion)|(link UP)|(vc add)|(vc delete)|transitioned|Transferred|transfer-file|QFABRIC_NETWORK_NODE_GROUP|QFABRIC_SERVER_NODE_GROUP|QFABRIC_NODE|(license add)|(license delete)|(package -X update)|(package -X delete)|GRES|CFMD_CCM_DEFECT|LFMD_3AH|MEDIA_FLOW_ERROR|RPD_MPLS_PATH_BFD";
+            structured-data;
+        }
+        console {
+            any alert;
+        }
+        source-address 10.85.88.16;
+    }
+    processes {
+        routing force-64-bit;
+    }
+    ntp {
+        server 10.85.130.130;
+        source-address 10.85.88.16;
+    }
+}
+chassis {
+    craft-lockout;
+    dump-on-panic;
+    maximum-ecmp 64;
+    redundancy {
+        routing-engine 0 master;
+        routing-engine 1 backup;
+        failover {
+            on-loss-of-keepalives;
+            on-disk-failure;
+            not-on-disk-underperform;
+        }
+        graceful-switchover;
+    }
+    routing-engine {
+        on-disk-failure disk-failure-action reboot;
+    }
+    aggregated-devices {
+        ethernet {
+            device-count 128;
+        }
+        maximum-links 16;
+    }
+    fpc 0 {
+        pic 0 {
+            tunnel-services;
+            inline-services {
+                bandwidth 10g;
+            }
+        }
+        pic 2 {
+            tunnel-services;
+            inline-services {
+                bandwidth 10g;
+            }
+        }
+    }
+    fpc 1 {
+        power on;
+    }
+    fpc 2 {
+        pic 0 {
+            tunnel-services;
+        }
+    }
+    alarm {
+        management-ethernet {
+            link-down ignore;
+        }
+        ethernet {
+            link-down red;
+        }
+    }
+    network-services enhanced-ip;
+}
+interfaces {
+    xe-1/2/0 {
+        description "Towards Ixia 10/6 - ISIS Neighbors";
+        flexible-vlan-tagging;
+        mtu 9192;
+        encapsulation flexible-ethernet-services;
+        unit 100 {
+            vlan-id 100;
+            family inet {
+                address 10.1.6.1/30;
+            }
+            family iso;
+        }
+        unit 101 {
+            vlan-id 101;
+            family inet {
+                address 10.1.6.5/30;
+            }
+            family iso;
+        }
+        unit 102 {
+            vlan-id 102;
+            family inet {
+                address 10.1.6.9/30;
+            }
+            family iso;
+        }
+        unit 103 {
+            vlan-id 103;
+            family inet {
+                address 10.1.6.13/30;
+            }
+            family iso;
+        }
+        unit 104 {
+            vlan-id 104;
+            family inet {
+                address 10.1.6.17/30;
+            }
+            family iso;
+        }
+        unit 105 {
+            vlan-id 105;
+            family inet {
+                address 10.1.6.21/30;
+            }
+            family iso;
+        }
+        unit 106 {
+            vlan-id 106;
+            family inet {
+                address 10.1.6.25/30;
+            }
+            family iso;
+        }
+        unit 107 {
+            vlan-id 107;
+            family inet {
+                address 10.1.6.29/30;
+            }
+            family iso;
+        }
+        unit 108 {
+            vlan-id 108;
+            family inet {
+                address 10.1.6.33/30;
+            }
+            family iso;
+        }
+        unit 109 {
+            vlan-id 109;
+            family inet {
+                address 10.1.6.37/30;
+            }
+            family iso;
+        }
+        unit 110 {
+            vlan-id 110;
+            family inet {
+                address 10.1.6.41/30;
+            }
+            family iso;
+        }
+        unit 111 {
+            vlan-id 111;
+            family inet {
+                address 10.1.6.45/30;
+            }
+            family iso;
+        }
+        unit 112 {
+            vlan-id 112;
+            family inet {
+                address 10.1.6.49/30;
+            }
+            family iso;
+        }
+        unit 113 {
+            vlan-id 113;
+            family inet {
+                address 10.1.6.53/30;
+            }
+            family iso;
+        }
+        unit 114 {
+            vlan-id 114;
+            family inet {
+                address 10.1.6.57/30;
+            }
+            family iso;
+        }
+        unit 115 {
+            vlan-id 115;
+            family inet {
+                address 10.1.6.61/30;
+            }
+            family iso;
+        }
+        unit 116 {
+            vlan-id 116;
+            family inet {
+                address 10.1.6.65/30;
+            }
+            family iso;
+        }
+        unit 117 {
+            vlan-id 117;
+            family inet {
+                address 10.1.6.69/30;
+            }
+            family iso;
+        }
+        unit 118 {
+            vlan-id 118;
+            family inet {
+                address 10.1.6.73/30;
+            }
+            family iso;
+        }
+        unit 119 {
+            vlan-id 119;
+            family inet {
+                address 10.1.6.77/30;
+            }
+            family iso;
+        }
+        unit 120 {
+            vlan-id 120;
+            family inet {
+                address 10.1.6.81/30;
+            }
+            family iso;
+        }
+        unit 121 {
+            vlan-id 121;
+            family inet {
+                address 10.1.6.85/30;
+            }
+            family iso;
+        }
+        unit 122 {
+            vlan-id 122;
+            family inet {
+                address 10.1.6.89/30;
+            }
+            family iso;
+        }
+        unit 123 {
+            vlan-id 123;
+            family inet {
+                address 10.1.6.93/30;
+            }
+            family iso;
+        }
+        unit 124 {
+            vlan-id 124;
+            family inet {
+                address 10.1.6.97/30;
+            }
+            family iso;
+        }
+        unit 125 {
+            vlan-id 125;
+            family inet {
+                address 10.1.6.101/30;
+            }
+            family iso;
+        }
+        unit 126 {
+            vlan-id 126;
+            family inet {
+                address 10.1.6.105/30;
+            }
+            family iso;
+        }
+        unit 127 {
+            vlan-id 127;
+            family inet {
+                address 10.1.6.109/30;
+            }
+            family iso;
+        }
+        unit 128 {
+            vlan-id 128;
+            family inet {
+                address 10.1.6.113/30;
+            }
+            family iso;
+        }
+        unit 129 {
+            vlan-id 129;
+            family inet {
+                address 10.1.6.117/30;
+            }
+            family iso;
+        }
+        unit 130 {
+            vlan-id 130;
+            family inet {
+                address 10.1.6.121/30;
+            }
+            family iso;
+        }
+        unit 131 {
+            vlan-id 131;
+            family inet {
+                address 10.1.6.125/30;
+            }
+            family iso;
+        }
+        unit 132 {
+            vlan-id 132;
+            family inet {
+                address 10.1.6.129/30;
+            }
+            family iso;
+        }
+        unit 133 {
+            vlan-id 133;
+            family inet {
+                address 10.1.6.133/30;
+            }
+            family iso;
+        }
+        unit 134 {
+            vlan-id 134;
+            family inet {
+                address 10.1.6.137/30;
+            }
+            family iso;
+        }
+        unit 135 {
+            vlan-id 135;
+            family inet {
+                address 10.1.6.141/30;
+            }
+            family iso;
+        }
+        unit 136 {
+            vlan-id 136;
+            family inet {
+                address 10.1.6.145/30;
+            }
+            family iso;
+        }
+        unit 137 {
+            vlan-id 137;
+            family inet {
+                address 10.1.6.149/30;
+            }
+            family iso;
+        }
+        unit 138 {
+            vlan-id 138;
+            family inet {
+                address 10.1.6.153/30;
+            }
+            family iso;
+        }
+        unit 139 {
+            vlan-id 139;
+            family inet {
+                address 10.1.6.157/30;
+            }
+            family iso;
+        }
+        unit 140 {
+            vlan-id 140;
+            family inet {
+                address 10.1.6.161/30;
+            }
+            family iso;
+        }
+        unit 141 {
+            vlan-id 141;
+            family inet {
+                address 10.1.6.165/30;
+            }
+            family iso;
+        }
+        unit 142 {
+            vlan-id 142;
+            family inet {
+                address 10.1.6.169/30;
+            }
+            family iso;
+        }
+        unit 143 {
+            vlan-id 143;
+            family inet {
+                address 10.1.6.173/30;
+            }
+            family iso;
+        }
+        unit 144 {
+            vlan-id 144;
+            family inet {
+                address 10.1.6.177/30;
+            }
+            family iso;
+        }
+        unit 145 {
+            vlan-id 145;
+            family inet {
+                address 10.1.6.181/30;
+            }
+            family iso;
+        }
+        unit 146 {
+            vlan-id 146;
+            family inet {
+                address 10.1.6.185/30;
+            }
+            family iso;
+        }
+        unit 147 {
+            vlan-id 147;
+            family inet {
+                address 10.1.6.189/30;
+            }
+            family iso;
+        }
+        unit 148 {
+            vlan-id 148;
+            family inet {
+                address 10.1.6.193/30;
+            }
+            family iso;
+        }
+        unit 149 {
+            vlan-id 149;
+            family inet {
+                address 10.1.6.197/30;
+            }
+            family iso;
+        }
+        unit 150 {
+            vlan-id 150;
+            family inet {
+                address 10.1.6.201/30;
+            }
+            family iso;
+        }
+        unit 151 {
+            vlan-id 151;
+            family inet {
+                address 10.1.6.205/30;
+            }
+            family iso;
+        }
+        unit 152 {
+            vlan-id 152;
+            family inet {
+                address 10.1.6.209/30;
+            }
+            family iso;
+        }
+        unit 153 {
+            vlan-id 153;
+            family inet {
+                address 10.1.6.213/30;
+            }
+            family iso;
+        }
+        unit 154 {
+            vlan-id 154;
+            family inet {
+                address 10.1.6.217/30;
+            }
+            family iso;
+        }
+        unit 155 {
+            vlan-id 155;
+            family inet {
+                address 10.1.6.221/30;
+            }
+            family iso;
+        }
+        unit 156 {
+            vlan-id 156;
+            family inet {
+                address 10.1.6.225/30;
+            }
+            family iso;
+        }
+        unit 157 {
+            vlan-id 157;
+            family inet {
+                address 10.1.6.229/30;
+            }
+            family iso;
+        }
+        unit 158 {
+            vlan-id 158;
+            family inet {
+                address 10.1.6.233/30;
+            }
+            family iso;
+        }
+        unit 159 {
+            vlan-id 159;
+            family inet {
+                address 10.1.6.237/30;
+            }
+            family iso;
+        }
+        unit 160 {
+            vlan-id 160;
+            family inet {
+                address 10.1.6.241/30;
+            }
+            family iso;
+        }
+        unit 161 {
+            vlan-id 161;
+            family inet {
+                address 10.1.6.245/30;
+            }
+            family iso;
+        }
+        unit 162 {
+            vlan-id 162;
+            family inet {
+                address 10.1.6.249/30;
+            }
+            family iso;
+        }
+        unit 163 {
+            vlan-id 163;
+            family inet {
+                address 10.1.6.253/30;
+            }
+            family iso;
+        }
+        unit 164 {
+            vlan-id 164;
+            family inet {
+                address 10.1.7.1/30;
+            }
+            family iso;
+        }
+        unit 165 {
+            vlan-id 165;
+            family inet {
+                address 10.1.7.5/30;
+            }
+            family iso;
+        }
+        unit 166 {
+            vlan-id 166;
+            family inet {
+                address 10.1.7.9/30;
+            }
+            family iso;
+        }
+        unit 167 {
+            vlan-id 167;
+            family inet {
+                address 10.1.7.13/30;
+            }
+            family iso;
+        }
+        unit 168 {
+            vlan-id 168;
+            family inet {
+                address 10.1.7.17/30;
+            }
+            family iso;
+        }
+        unit 169 {
+            vlan-id 169;
+            family inet {
+                address 10.1.7.21/30;
+            }
+            family iso;
+        }
+        unit 170 {
+            vlan-id 170;
+            family inet {
+                address 10.1.7.25/30;
+            }
+            family iso;
+        }
+        unit 171 {
+            vlan-id 171;
+            family inet {
+                address 10.1.7.29/30;
+            }
+            family iso;
+        }
+        unit 172 {
+            vlan-id 172;
+            family inet {
+                address 10.1.7.33/30;
+            }
+            family iso;
+        }
+        unit 173 {
+            vlan-id 173;
+            family inet {
+                address 10.1.7.37/30;
+            }
+            family iso;
+        }
+        unit 174 {
+            vlan-id 174;
+            family inet {
+                address 10.1.7.41/30;
+            }
+            family iso;
+        }
+        unit 175 {
+            vlan-id 175;
+            family inet {
+                address 10.1.7.45/30;
+            }
+            family iso;
+        }
+        unit 176 {
+            vlan-id 176;
+            family inet {
+                address 10.1.7.49/30;
+            }
+            family iso;
+        }
+        unit 177 {
+            vlan-id 177;
+            family inet {
+                address 10.1.7.53/30;
+            }
+            family iso;
+        }
+        unit 178 {
+            vlan-id 178;
+            family inet {
+                address 10.1.7.57/30;
+            }
+            family iso;
+        }
+        unit 179 {
+            vlan-id 179;
+            family inet {
+                address 10.1.7.61/30;
+            }
+            family iso;
+        }
+        unit 180 {
+            vlan-id 180;
+            family inet {
+                address 10.1.7.65/30;
+            }
+            family iso;
+        }
+        unit 181 {
+            vlan-id 181;
+            family inet {
+                address 10.1.7.69/30;
+            }
+            family iso;
+        }
+        unit 182 {
+            vlan-id 182;
+            family inet {
+                address 10.1.7.73/30;
+            }
+            family iso;
+        }
+        unit 183 {
+            vlan-id 183;
+            family inet {
+                address 10.1.7.77/30;
+            }
+            family iso;
+        }
+        unit 184 {
+            vlan-id 184;
+            family inet {
+                address 10.1.7.81/30;
+            }
+            family iso;
+        }
+        unit 185 {
+            vlan-id 185;
+            family inet {
+                address 10.1.7.85/30;
+            }
+            family iso;
+        }
+        unit 186 {
+            vlan-id 186;
+            family inet {
+                address 10.1.7.89/30;
+            }
+            family iso;
+        }
+        unit 187 {
+            vlan-id 187;
+            family inet {
+                address 10.1.7.93/30;
+            }
+            family iso;
+        }
+        unit 188 {
+            vlan-id 188;
+            family inet {
+                address 10.1.7.97/30;
+            }
+            family iso;
+        }
+        unit 189 {
+            vlan-id 189;
+            family inet {
+                address 10.1.7.101/30;
+            }
+            family iso;
+        }
+        unit 190 {
+            vlan-id 190;
+            family inet {
+                address 10.1.7.105/30;
+            }
+            family iso;
+        }
+        unit 191 {
+            vlan-id 191;
+            family inet {
+                address 10.1.7.109/30;
+            }
+            family iso;
+        }
+        unit 192 {
+            vlan-id 192;
+            family inet {
+                address 10.1.7.113/30;
+            }
+            family iso;
+        }
+        unit 193 {
+            vlan-id 193;
+            family inet {
+                address 10.1.7.117/30;
+            }
+            family iso;
+        }
+        unit 194 {
+            vlan-id 194;
+            family inet {
+                address 10.1.7.121/30;
+            }
+            family iso;
+        }
+        unit 195 {
+            vlan-id 195;
+            family inet {
+                address 10.1.7.125/30;
+            }
+            family iso;
+        }
+        unit 196 {
+            vlan-id 196;
+            family inet {
+                address 10.1.7.129/30;
+            }
+            family iso;
+        }
+        unit 197 {
+            vlan-id 197;
+            family inet {
+                address 10.1.7.133/30;
+            }
+            family iso;
+        }
+        unit 198 {
+            vlan-id 198;
+            family inet {
+                address 10.1.7.137/30;
+            }
+            family iso;
+        }
+        unit 199 {
+            vlan-id 199;
+            family inet {
+                address 10.1.7.141/30;
+            }
+            family iso;
+        }
+    }
+    et-1/3/0 {
+        description CCL-MPLS-NORTH-Link-from-MX240-01-et-1/3/0-to-PTX-1-et-0/1/1;
+        traps;
+        mtu 9192;
+        unit 0 {
+            family inet {
+                address 10.10.106.10/24;
+            }
+            family iso;
+            family inet6;
+            family mpls;
+        }
+    }
+    xe-2/2/3 {
+        description CCL-MPLS-NORTH-Link-from-MX240-1-xe-2/2/3-to-MX480-2-xe-4/3/1;
+        traps;
+        mtu 9192;
+        hold-time up 50000 down 0;
+        unit 0 {
+            family inet {
+                address 10.10.108.10/24;
+            }
+            family iso;
+            family inet6;
+            family mpls;
+        }
+    }
+    lo0 {
+        unit 0 {
+            family inet {
+                inactive: filter {
+                    input PROTECT-RE;
+                }
+                address 192.168.0.10/32 {
+                    primary;
+                    preferred;
+                }
+                address 127.0.0.1/32;
+            }
+            family iso {
+                address 49.0001.1921.6800.0010.00;
+            }
+        }
+    }
+}
+policy-options {
+    prefix-list BGP-ADDRESSES {
+        apply-path "protocols bgp group <*> neighbor <*>";
+    }
+    prefix-list LOCALHOST {
+        127.0.0.1/32;
+    }
+    prefix-list NTP-ADDRESSES {
+        10.188.194.10/32;
+        apply-path "system ntp server <*>";
+    }
+    prefix-list INTERNAL-ADDRESSES {
+        apply-path "interfaces <*> unit <*> family inet address <*>";
+    }
+    prefix-list MPLS-INFRASTRUCTURE {
+        10.188.195.0/24;
+        84.235.94.0/24;
+        84.235.111.0/24;
+        84.235.120.0/21;
+        84.235.121.34/31;
+        84.235.121.38/31;
+    }
+    prefix-list local-address {
+        apply-path "interfaces <*> unit <*> family inet address <*>";
+    }
+    prefix-list SSH-ADDRESSES {
+        10.21.230.40/32;
+        /* RY-Jump-BOX */
+        10.141.49.42/32;
+        /* RY-Jump-BOX */
+        10.141.49.43/32;
+        /* JD-Jump-BOX */
+        10.141.50.10/32;
+        /* JD-Jump-BOX */
+        10.141.50.11/32;
+        10.188.165.8/32;
+        10.188.165.10/32;
+        10.248.11.2/32;
+        10.248.11.3/32;
+        62.149.71.108/32;
+        /*OPNET*/
+        84.235.4.114/32;
+        84.235.4.117/32;
+        84.235.4.120/32;
+        84.235.4.123/32;
+        84.235.4.124/32;
+        84.235.14.107/32;
+    }
+    prefix-list PR-SNMP-ADDRESSES {
+        apply-path "snmp community <*> clients <*>";
+    }
+    prefix-list MGMT-ADDRESSES {
+        10.188.0.0/16;
+        84.235.94.0/24;
+        84.235.120.0/21;
+    }
+    policy-statement ALLOW-only-1COPY {
+        term drop-inactive {
+            from {
+                protocol bgp;
+                community [ ALL-TRANSIT-ROUTES ALL-PEERING-ROUTES ];
+                state inactive;
+            }
+            then reject;
+        }
+        term else {
+            from protocol bgp;
+            then accept;
+        }
+    }
+    policy-statement LOAD-BALANCE {
+        then {
+            load-balance per-packet;
+        }
+    }
+    policy-statement NO-BGP-FOR-NH-RESOLUTION {
+        term BGP {
+            from protocol bgp;
+            then reject;
+        }
+    }
+    policy-statement NO-BGP-INTO-FIB {
+        term NO-BGP {
+            from {
+                protocol bgp;
+                community [ ALL-TRANSIT-ROUTES ALL-PEERING-ROUTES ];
+            }
+            then reject;
+        }
+    }
+    policy-statement PL-LOCAL-LOOPBACK {
+        term LOCAL-LOOPBACK {
+            from {
+                protocol direct;
+                interface lo0.0;
+                route-filter 0.0.0.0/0 prefix-length-range /32-/32;
+            }
+            then {
+                community add CM-LOOPBACKS-000;
+                accept;
+            }
+        }
+        then reject;
+    }
+    policy-statement PL-REMOTE-LOOPBACKS {
+        term ALL-LOOPBACKS {
+            from protocol bgp;
+            then {
+                community add CM-NO-ADVERTISE;
+                accept;
+            }
+        }
+        then reject;
+    }
+    policy-statement VPN-ROUTES-IN {
+        term VOIPX_UNTRUST {
+            from {
+                protocol bgp;
+                next-hop [ 192.168.154.19 192.168.154.20 192.168.154.73 192.168.154.74 ];
+                community MPLS-MASTER;
+            }
+            then accept;
+        }
+        term BLOCK-RTPE-VII {
+            from {
+                protocol bgp;
+                community RTPE-VII;
+            }
+            then reject;
+        }
+        term BLOCK-RAN-RT {
+            from {
+                protocol bgp;
+                community RAN-RT;
+            }
+            then reject;
+        }
+        term ALLOW-MPLS-MASTER {
+            from {
+                protocol bgp;
+                community MPLS-MASTER;
+            }
+            then accept;
+        }
+        term REJECT-ANY {
+            then reject;
+        }
+    }
+    policy-statement VPN-ROUTES-OUT {
+        term 1 {
+            from community IGW-MASTER;
+            then accept;
+        }
+        term 2 {
+            then reject;
+        }
+    }
+    policy-statement only-interas-into-inet0 {
+        term 1 {
+            from {
+                protocol bgp;
+                rib inet.3;
+                route-filter 0.0.0.0/0 prefix-length-range /32-/32;
+            }
+            to rib inet.0;
+            then accept;
+        }
+        term 2 {
+            from rib inet.3;
+            to rib inet.0;
+            then reject;
+        }
+        term 3 {
+            then accept;
+        }
+    }
+    community ALL-PEERING-ROUTES members 65112:2....;
+    community ALL-TRANSIT-ROUTES members 65112:1....;
+    community CM-LOOPBACKS-000 members 65000:11000;
+    community CM-NO-ADVERTISE members no-advertise;
+    community IGW-MASTER members 65112:49100;
+    community LOC_INTLPOP_TYPE_PEERING members [ "65111:4[789]..." 65112:22... ];
+    community LOC_MU_TYPE_PEERING members [ 65111:41... 65112:2.... ];
+    community LOC_MU_TYPE_TRANSIT members [ 65111:41... 65112:1.... ];
+    community LOC_SA_TYPE_PEERING members [ 65111:40... 65112:2.... ];
+    community LOC_SA_TYPE_TRANSIT members [ 65111:40... 65112:1.... ];
+    community LOC_YA_TYPE_PEERING members [ 65111:42... 65112:2.... ];
+    community LOC_YA_TYPE_TRANSIT members [ 65111:42... 65112:1.... ];
+    community MPLS-MASTER members 65112:49101;
+    community RAN-RT members [ 65000:5451 65000:5458 65000:5455 65000:3820 65000:3865 65000:3783 65000:5450 65000:5453 65000:5454 65000:5190 65000:5245 65000:5642 65000:5640 65000:5641 65000:5194 65000:5198 65000:5191 65000:5247 ];
+    community RTPE-VII members "(65000:...5.)";
+}
+firewall {
+    family inet {
+        filter PROTECT-RE {
+            term fragment-first {
+                from {
+                    first-fragment;
+                }
+                then {
+                    count DDOS-FRAGMENT;
+                    discard;
+                }
+            }
+            term fragment-is {
+                from {
+                    is-fragment;
+                }
+                then {
+                    count DDOS-FRAGMENT;
+                    discard;
+                }
+            }
+            term SMALL-PACKETS {
+                from {
+                    packet-length 0-24;
+                }
+                then {
+                    count SMALL-PACKET-ATTACK;
+                    discard;
+                }
+            }
+            term TCP-DOS-PROTECTION {
+                from {
+                    /* all incoming TCP based sessions i.e. only SYN */
+                    source-prefix-list {
+                        BGP-ADDRESSES;
+                        LOCALHOST;
+                        MGMT-ADDRESSES;
+                    }
+                    protocol tcp;
+                    tcp-flags "(syn & !ack) | fin | rst";
+                }
+                then {
+                    policer TCP-CONNECTION-POLICER;
+                    count TCP-SYN;
+                    next term;
+                }
+            }
+            term BFD {
+                from {
+                    source-prefix-list {
+                        INTERNAL-ADDRESSES;
+                    }
+                    protocol udp;
+                    destination-port 3784;
+                }
+                then {
+                    count BFD-TRAFFIC;
+                    accept;
+                }
+            }
+            term SSH-IN {
+                from {
+                    source-prefix-list {
+                        SSH-ADDRESSES;
+                    }
+                    protocol tcp;
+                    port ssh;
+                }
+                then {
+                    policer SSH-POLICER;
+                    count SSH-IN-TRAFFIC;
+                    accept;
+                }
+            }
+            term BGP {
+                from {
+                    source-prefix-list {
+                        BGP-ADDRESSES;
+                    }
+                    protocol tcp;
+                    port bgp;
+                }
+                then {
+                    count BGP-TRAFFIC;
+                    accept;
+                }
+            }
+            term SNMP {
+                from {
+                    source-prefix-list {
+                        PR-SNMP-ADDRESSES;
+                    }
+                    protocol udp;
+                    destination-port snmp;
+                }
+                then {
+                    policer SNMP-POLICER;
+                    count SNMP-TRAFFIC;
+                    accept;
+                }
+            }
+            term NTP {
+                from {
+                    source-prefix-list {
+                        NTP-ADDRESSES;
+                    }
+                    protocol udp;
+                    port ntp;
+                }
+                then {
+                    policer NTP-POLICER;
+                    count NTP-TRAFFIC;
+                    accept;
+                }
+            }
+            term ICMP {
+                from {
+                    protocol icmp;
+                    icmp-type-except [ router-advertisement redirect ];
+                }
+                then {
+                    policer ICMP-POLICER;
+                    count ICMP-TRAFFIC;
+                    accept;
+                }
+            }
+            term UDP-SERVICES {
+                from {
+                    source-prefix-list {
+                        MGMT-ADDRESSES;
+                    }
+                    protocol udp;
+                    source-port 1024-65535;
+                }
+                then {
+                    policer SMALL-BW-POLICER;
+                    count UDP-SERVICES-TRAFFIC;
+                    accept;
+                }
+            }
+            term tacacs {
+                from {
+                    address {
+                        84.235.0.34/32;
+                        10.171.1.251/32;
+                        10.141.48.110/32;
+                    }
+                    protocol tcp;
+                    source-port tacacs;
+                    tcp-established;
+                }
+                then {
+                    count tacacs-TRAFFIC;
+                    accept;
+                }
+            }
+            term LDP {
+                from {
+                    source-prefix-list {
+                        MPLS-INFRASTRUCTURE;
+                    }
+                    protocol [ tcp udp ];
+                    port ldp;
+                }
+                then accept;
+            }
+            term NS-NetConf {
+                from {
+                    source-address {
+                        10.188.194.64/28;
+                    }
+                    protocol tcp;
+                    port 830;
+                }
+                then {
+                    count NS-Netconf;
+                    syslog;
+                    accept;
+                }
+            }
+            term DISCARD {
+                then {
+                    count DENY-TO-ROUTING-ENGINE;
+                    syslog;
+                    discard;
+                }
+            }
+        }
+        filter PROTECT-fxp {
+            term 1 {
+                from {
+                    destination-prefix-list {
+                        local-address;
+                    }
+                }
+                then accept;
+            }
+            term DISCARD {
+                then {
+                    discard;
+                }
+            }
+        }
+    }
+    policer TELNET-POLICER {
+        if-exceeding {
+            bandwidth-limit 25m;
+            burst-size-limit 128k;
+        }
+        then discard;
+    }
+    policer SSH-POLICER {
+        if-exceeding {
+            bandwidth-limit 25m;
+            burst-size-limit 128k;
+        }
+        then discard;
+    }
+    policer NTP-POLICER {
+        if-exceeding {
+            bandwidth-limit 500k;
+            burst-size-limit 15k;
+        }
+        then discard;
+    }
+    policer SMALL-BW-POLICER {
+        if-exceeding {
+            bandwidth-limit 1m;
+            burst-size-limit 15k;
+        }
+        then discard;
+    }
+    policer SNMP-POLICER {
+        if-exceeding {
+            bandwidth-limit 2m;
+            burst-size-limit 15k;
+        }
+        then discard;
+    }
+    policer TCP-CONNECTION-POLICER {
+        if-exceeding {
+            bandwidth-limit 50k;
+            burst-size-limit 15k;
+        }
+        then discard;
+    }
+    policer ICMP-POLICER {
+        if-exceeding {
+            bandwidth-limit 100m;
+            burst-size-limit 15k;
+        }
+        then discard;
+    }
+}
+routing-options {
+    nonstop-routing;
+    static {
+        route 0.0.0.0/0 {
+            next-hop 10.85.88.1;
+            no-readvertise;
+            preference 200;
+        }
+    }
+    rib-groups {
+        inet3->inet0->inet63 {
+            export-rib inet.3;
+            import-rib [ inet.3 inet.0 inet6.3 ];
+            import-policy only-interas-into-inet0;
+        }
+    }
+    router-id 192.168.0.10;
+    autonomous-system 65000;
+    forwarding-table {
+        export [ LOAD-BALANCE NO-BGP-INTO-FIB ];
+        indirect-next-hop;
+    }
+    resolution {
+        rib inet.0 {
+            import NO-BGP-FOR-NH-RESOLUTION;
+        }
+        rib inet6.0 {
+            import NO-BGP-FOR-NH-RESOLUTION;
+        }
+    }
+}
+protocols {
+    ldp {
+        traffic-statistics {
+            file ldp-traffic-statistics size 2m files 10 world-readable;
+        }
+        l2-smart-policy;
+        track-igp-metric;
+        deaggregate;
+        transport-address 192.168.0.10;
+        interface et-1/3/0.0;
+        interface xe-2/2/3.0;
+        interface lo0.0;
+        session-protection;
+        log-updown {
+            trap disable;
+        }
+    }
+    bgp {
+        precision-timers;
+        path-selection external-router-id;
+        inactive: traceoptions {
+            file BGP-LOG size 10m files 5;
+            flag state;
+        }
+        log-updown;
+        tcp-mss 4096;
+        inactive: group IGW-IBGP-INTERNET-DP {
+            type internal;
+            description "IGW Dual-Plane RRs Peering Group for INTERNET AFI/SAFI,";
+            local-address 192.168.0.10;
+            passive;
+            family inet {
+                unicast {
+                    add-path {
+                        receive;
+                        send {
+                            path-count 4;
+                        }
+                    }
+                }
+            }
+            family inet-vpn {
+                unicast;
+            }
+            family inet6 {
+                labeled-unicast {
+                    add-path {
+                        receive;
+                        send {
+                            path-count 4;
+                        }
+                    }
+                    explicit-null;
+                }
+            }
+            family inet6-vpn {
+                unicast;
+            }
+            family l2vpn {
+                signaling;
+            }
+            family route-target {
+                advertise-default;
+            }
+            export ALLOW-only-1COPY;
+            cluster 192.168.0.10;
+            tcp-mss 4096;
+            neighbor 192.168.0.5 {
+                description MX-2020;
+            }
+            neighbor 192.168.0.11 {
+                description MX960-1;
+            }
+        }
+        group IGW-IBGP-MPLS-SERVICES-DP {
+            type internal;
+            description "IGW Dual-Plane RRs Peering Group for MPLS Services AFI/SAFI";
+            local-address 192.168.0.10;
+            passive;
+            family inet {
+                inactive: unicast {
+                    add-path {
+                        receive;
+                        send {
+                            path-count 4;
+                        }
+                    }
+                }
+                labeled-unicast {
+                    add-path {
+                        receive;
+                        send {
+                            path-count 4;
+                        }
+                    }
+                }
+            }
+            family inet-vpn {
+                unicast;
+            }
+            family inet6 {
+                labeled-unicast {
+                    add-path {
+                        receive;
+                        send {
+                            path-count 4;
+                        }
+                    }
+                    explicit-null;
+                }
+            }
+            family inet6-vpn {
+                unicast;
+            }
+            family l2vpn {
+                signaling;
+            }
+            family route-target {
+                advertise-default;
+            }
+            export ALLOW-only-1COPY;
+            cluster 192.168.0.10;
+            tcp-mss 4096;
+            neighbor 192.168.0.5 {
+                description MX-2020;
+            }
+            neighbor 192.168.0.11 {
+                description MX960-1;
+            }
+        }
+    }
+    isis {
+        inactive: traceoptions {
+            file isis size 10m files 5 world-readable;
+            flag error detail;
+            flag state detail;
+        }
+        lsp-lifetime 65535;
+        spf-options {
+            delay 50;
+            holddown 5000;
+            rapid-runs 3;
+        }
+        overload;
+        level 2 wide-metrics-only;
+        level 1 disable;
+        interface xe-1/2/0.100 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$x6KNVsZGjfQ3ylWXNbg4"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.101 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$X1y7dwJZDPTFSrML7V2g"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.102 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$qm5zAt0crKoJjkmTn6"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.103 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$0vrpBRcMWXw2oFnAuBErl"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.104 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$gDoZDPfQCpOxNw2oGHk"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.105 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$pi3x01EKv8VsgQF9t0ISy"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.106 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$/j1hCpOSyex-bmfF6CuIR"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.107 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$UTjkm3n9BRcwYaGjq5T"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.108 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$If2ESlXx-gaG/C01EyvM"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.109 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$9f3jAuByrK7dwP53/A0RE"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.110 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$/YpeCpOSyex-bmfF6CuIR"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.111 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$rpaeMLbw2Uiq0BhyeW7N"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.112 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$oTJUi5TFt01NdY4JDq."; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.113 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$8m-XNVoaG.fQhSKWX-sY"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.114 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$ER9crK7NVoZDCtBRclW8"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.115 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$qm5zAt0crKoJjkmTn6"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.116 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$c/5yeM-dwJUituIhyKLX"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.117 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$Ss1rKWdVsZDHp0RcrvXx"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.118 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$0xwDBRcMWXw2oFnAuBErl"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.119 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$RVRhyex7d4JU9AOIhrMW"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.120 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$Rc9hyex7d4JU9AOIhrMW"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.121 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$E8ccrK7NVoZDCtBRclW8"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.122 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$AK1kpOIleM-bY5Q6CpBhc"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.123 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$ByPIhy8L7Y4Jn/pOIceK"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.124 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$eThv8xsY4jkmBISlvL-d"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.125 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$FfDan9tRESWXNHq5znC0O"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.126 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$OPEp1ESW8xsga36t01hle"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.127 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$GhDH.F3/OIhbsoZDkf5"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.128 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$rbieMLbw2Uiq0BhyeW7N"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.129 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$hFlSlvN-baGjAp1ESe8L"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.130 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$JMGjkQznuBRdbgaGimP"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.131 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$uBocOIhvMLbY4z3CpORyr"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.132 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$j7H.f6/AIhyYgZDHmQz"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.133 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$pJ9301EKv8VsgQF9t0ISy"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.134 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$2A4JUmPT9t0X7bY4ZiH"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.135 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$DgiqPn6C1ESs2JUi.TQ"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.136 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$O0tS1ESW8xsga36t01hle"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.137 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$VCw2oiH.F6CvW7dwgZG"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.138 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$HqPT9CpESlgoUiqfF3"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.139 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$8xVXNVoaG.fQhSKWX-sY"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.140 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$qm5zAt0crKoJjkmTn6"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.141 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$vAAWXN2gaH.fIErKWxVb"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.142 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$ycdlv8VbYGjkuOESlMx7"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.143 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$DxiqPn6C1ESs2JUi.TQ"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.144 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$8s9XNVoaG.fQhSKWX-sY"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.145 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$sf2oZq.f6Cp8Xdw2aDj"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.146 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$0-g3BRcMWXw2oFnAuBErl"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.147 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$SCXrKWdVsZDHp0RcrvXx"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.148 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$SiDrKWdVsZDHp0RcrvXx"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.149 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$6RZu9t0cSlXNV.Pzn9p1I"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.150 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$Ngdw2UDHTF6lKL7dsoa"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.151 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$QwkiF6C1Ihv8xjHPTF/pu"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.152 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$wiY4JkqPn9tWL-bYoUD"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.153 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$nQmE/AuhcrL7dqmQ3/tB1"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.154 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$YjgaG.m5/AuLxVsgJji"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.155 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$9eekAuByrK7dwP53/A0RE"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.156 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$JMGjkQznuBRdbgaGimP"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.157 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$jPH.f6/AIhyYgZDHmQz"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.158 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$nREO/AuhcrL7dqmQ3/tB1"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.159 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$zq9.3/AIRcML7ikfQ39u0"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.160 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$Tzn9B1EKWXDim5z6tp"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.161 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$/8h2CpOSyex-bmfF6CuIR"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.162 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$8esXNVoaG.fQhSKWX-sY"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.163 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$X.n7dwJZDPTFSrML7V2g"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.164 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$GnDH.F3/OIhbsoZDkf5"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.165 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$n8l6/AuhcrL7dqmQ3/tB1"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.166 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$yj0lv8VbYGjkuOESlMx7"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.167 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$pkjd01EKv8VsgQF9t0ISy"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.168 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$A1ctpOIleM-bY5Q6CpBhc"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.169 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$xdTNVsZGjfQ3ylWXNbg4"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.170 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$P5znu01rKWZUkm5F9C"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.171 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$Lb7x-baJUm5zcyv8xdY2"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.172 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$bJsgaHkm3/AM8NVs4GU"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.173 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$yHBlv8VbYGjkuOESlMx7"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.174 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$hJqSlvN-baGjAp1ESe8L"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.175 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$pGKs01EKv8VsgQF9t0ISy"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.176 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$t1kwuBReKWdw2Tz/Au1cS"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.177 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$IrzESlXx-gaG/C01EyvM"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.178 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$RfRhyex7d4JU9AOIhrMW"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.179 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$xiPNVsZGjfQ3ylWXNbg4"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.180 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$0JMeBRcMWXw2oFnAuBErl"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.181 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$8EOXNVoaG.fQhSKWX-sY"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.182 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$Cv2Ut01rlvNVsfTn9tOEh"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.183 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$XPi7dwJZDPTFSrML7V2g"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.184 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$xQ5NVsZGjfQ3ylWXNbg4"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.185 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$BOQIhy8L7Y4Jn/pOIceK"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.186 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$0.mSBRcMWXw2oFnAuBErl"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.187 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$lgpKWXwsgDH.O1crK8N-"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.188 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$v6HWXN2gaH.fIErKWxVb"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.189 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$OKs61ESW8xsga36t01hle"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.190 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$0DdrBRcMWXw2oFnAuBErl"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.191 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$/NmTCpOSyex-bmfF6CuIR"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.192 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$xWcNVsZGjfQ3ylWXNbg4"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.193 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$hR8SlvN-baGjAp1ESe8L"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.194 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$F8Mxn9tRESWXNHq5znC0O"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.195 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$Xgq7dwJZDPTFSrML7V2g"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.196 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$FZmnn9tRESWXNHq5znC0O"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.197 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$SJ0rKWdVsZDHp0RcrvXx"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.198 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$I-yESlXx-gaG/C01EyvM"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface xe-1/2/0.199 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$QVHoF6C1Ihv8xjHPTF/pu"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface et-1/3/0.0 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 1000;
+                hello-authentication-type md5;
+            }
+            level 1 disable;
+        }
+        interface xe-2/2/3.0 {
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 1000;
+                hello-authentication-type md5;
+            }
+            level 1 disable;
+        }
+        interface lo0.0 {
+            passive;
+        }
+    }
+    mpls {
+        ipv6-tunneling;
+        interface xe-2/2/3.0;
+        interface et-1/3/0.0;
+    }
+}
+{master}

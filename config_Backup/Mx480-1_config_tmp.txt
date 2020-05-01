@@ -1,0 +1,1308 @@
+## Last commit: 2020-04-29 10:39:41 EDT by stc
+version 18.4R3-S1.3;
+groups {
+    re0 {
+        system {
+            host-name WF-CSIM-MX480-1-STC-re0;
+        }
+        interfaces {
+            fxp0 {
+                unit 0 {
+                    family inet {
+                        address 10.85.88.10/25 {
+                            master-only;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    re1 {
+        system {
+            host-name WF-CSIM-MX480-1-STC-re1;
+        }
+        interfaces {
+            fxp0 {
+                unit 0 {
+                    family inet {
+                        inactive: address 10.13.126.29/24;
+                        address 10.85.88.11/25 {
+                            master-only;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    MICRO-BFD-GR {
+        interfaces {
+            <ae*> {
+                aggregated-ether-options {
+                    bfd-liveness-detection {
+                        version automatic;
+                        minimum-interval 50;
+                        multiplier 3;
+                        no-adaptation;
+                    }
+                }
+            }
+        }
+    }
+    RSVP-PARAMETERS {
+        protocols {
+            rsvp {
+                interface <*> {
+                    subscription 90;
+                    link-protection {
+                        optimize-timer 300;
+                    }
+                }
+            }
+        }
+    }
+}
+apply-groups [ re0 re1 ];
+system {
+    commit synchronize;
+    login {
+        class shell {
+            permissions all;
+        }
+        user ccl {
+            uid 2010;
+            class super-user;
+            authentication {
+                encrypted-password "$6$5E2nr5/K$3DaTwgT9sCEdokfWJjAJyWA/UMJYUdi.T4b7OStfVcbBNJoCWA9CvkwsfEhvkFvckY7VSyiZET5GxjDM87bZl."; ## SECRET-DATA
+            }
+        }
+        user csim {
+            uid 2004;
+            class super-user;
+            authentication {
+                encrypted-password "$1$VxGMFJvp$K5JSHyZG7Ero1ihEzjy8M1"; ## SECRET-DATA
+            }
+        }
+        user mmccoy {
+            uid 2000;
+            class super-user;
+            authentication {
+                encrypted-password "$1$ZcHuRaZD$YVwWce30Pr8c0jK7e8B/m0"; ## SECRET-DATA
+            }
+        }
+        user premesh {
+            uid 2005;
+            class super-user;
+            authentication {
+                encrypted-password "$1$AHicUq0R$M/stNnSm9w6zK8rPoGdd61"; ## SECRET-DATA
+            }
+        }
+        user regress {
+            uid 2001;
+            class super-user;
+            shell sh;
+        }
+        user shell {
+            uid 2008;
+            class super-user;
+            shell sh;
+            authentication {
+                encrypted-password "$sha1$23540$huiocceA$wacL02GyDZNcygAjnXD3GbyqShkA"; ## SECRET-DATA
+            }
+        }
+        user snandyala {
+            uid 2007;
+            class super-user;
+            authentication {
+                encrypted-password "$5$K32EcjsG$4/S8tgtVUv.hOQQbZI6Z4SzN/QF0sFSuhI0kRdvzsHD"; ## SECRET-DATA
+            }
+        }
+        user stc {
+            uid 2006;
+            class super-user;
+            authentication {
+                encrypted-password "$5$nNJNjZfP$Tq2IRrqclQlYexL/RoWp3hE6JBM3cCV8pshObsT896C"; ## SECRET-DATA
+            }
+        }
+        user subhendu {
+            uid 1001;
+            class super-user;
+            authentication {
+                encrypted-password "$2b$12$RxmWyb1cTrFdnw/tOn.MwuDaNZeQ749LlHtFceJCuC/v7gWP/kxPS"; ## SECRET-DATA
+            }
+        }
+        user test {
+            uid 2901;
+            class super-user;
+            authentication {
+                encrypted-password "$5$t7ifGlXr$9kl79xSatDPP7f.LcXzXiMS0yz6LFRYcaTHNPHZAFo/"; ## SECRET-DATA
+            }
+        }
+        user toby {
+            full-name Toby;
+            uid 3501;
+            class super-user;
+            shell sh;
+            authentication {
+                encrypted-password "$5$tr6SGgLq$ActwEzmWsRxE.Kyjh.21sRfK8ih1w0oEGwbLhyTPXcD"; ## SECRET-DATA
+            }
+        }
+    }
+    root-authentication {
+        encrypted-password "$6$FBg89.Ju$RsyTnIfDCMWi.8MDZgRXkCTrFUfvFd5Z5DHckqADcJMQmM0zziz8ZojogfOA5s0eWgtIKA3HWLeHuOvzHMKm9/"; ## SECRET-DATA
+    }
+    services {
+        ftp;
+        ssh;
+        telnet;
+        netconf {
+            ssh;
+        }
+        dhcp-local-server {
+            dhcpv6 {
+                group DHCPV6-PPPoE {
+                    overrides {
+                        process-inform;
+                    }
+                    interface pp0.0;
+                }
+            }
+        }
+    }
+    no-redirects;
+    no-redirects-ipv6;
+    no-ping-record-route;
+    no-ping-time-stamp;
+    internet-options {
+        tcp-drop-synfin-set;
+    }
+    dynamic-profile-options {
+        versioning;
+    }
+    tacplus-server {
+        10.13.126.5 secret "$9$X-SNVYJGifT3goT369OBxNd"; ## SECRET-DATA
+    }
+    tacplus-options {
+        service-name junos-exec;
+    }
+    syslog {
+        user * {
+            any emergency;
+        }
+        file messages {
+            any notice;
+            authorization info;
+        }
+        file interactive-commands {
+            interactive-commands any;
+        }
+        file CHANGES {
+            change-log any;
+        }
+    }
+    processes {
+        general-authentication-service {
+            traceoptions {
+                file AAA size 100m files 10;
+                flag all;
+                flag user-access;
+                flag radius;
+            }
+        }
+    }
+    ntp {
+        server 10.13.126.102;
+    }
+}
+chassis {
+    redundancy {
+        routing-engine 0 master;
+        routing-engine 1 backup;
+        failover {
+            on-loss-of-keepalives;
+            on-disk-failure;
+        }
+        graceful-switchover;
+    }
+    aggregated-devices {
+        ethernet {
+            device-count 10;
+        }
+    }
+    fpc 1 {
+        pic 0 {
+            tunnel-services;
+        }
+    }
+    network-services enhanced-ip;
+}
+services {
+    analytics {
+        streaming-server ns-ifd {
+            remote-address 10.11.15.5;
+            remote-port 2000;
+        }
+        streaming-server ns-ifl {
+            remote-address 10.11.15.5;
+            remote-port 2001;
+        }
+        streaming-server ns-lsp {
+            remote-address 10.11.15.5;
+            remote-port 2002;
+        }
+        export-profile ns {
+            local-address 192.168.0.9;
+            reporting-rate 60;
+            payload-size 2000;
+            format gpb;
+            transport udp;
+        }
+        sensor ifd {
+            server-name ns-ifd;
+            export-name ns;
+            resource /junos/system/linecard/interface/;
+        }
+        sensor ifl {
+            server-name ns-ifl;
+            export-name ns;
+            resource /junos/system/linecard/interface/logical/usage/;
+        }
+        sensor lsp {
+            server-name ns-lsp;
+            export-name ns;
+            resource /junos/services/label-switched-path/usage/;
+        }
+    }
+}
+interfaces {
+    xe-2/0/0 {
+        description CCL-MPLS-NORTH-Link-from-MX480-1-xe-2/0/0-to-MX104-3-xe-2/0/0;
+        gigether-options {
+            802.3ad ae3;
+        }
+    }
+    xe-2/0/2 {
+        description CCL-MPLS-NORTH-Link-from-MX480-1-xe-2/0/2-to-MX960-01-xe-1/2/0;
+        inactive: unit 0 {
+            family inet {
+                address 10.10.119.9/24;
+            }
+            family iso;
+            family inet6 {
+                address 2001:10:10:119::9/64;
+            }
+            family mpls;
+        }
+    }
+    et-2/1/0 {
+        description CCL-MPLS-NORTH-Link-from-MX480-01-et-2/1/0-to-PTX-1-et-3/0/6;
+        inactive: gigether-options {
+            802.3ad ae5;
+        }
+    }
+    et-2/3/0 {
+        description CCL-MPLS-NORTH-Link-from-MX480-01-et-2/1/0-to-PTX-2-et-0/1/0;
+        gigether-options {
+            802.3ad ae2;
+        }
+    }
+    xe-3/0/0 {
+        description CCL-MPLS-NORTH-Link-from-MX480-1-xe-3/0/0-to-MX104-3-xe-2/0/1;
+        gigether-options {
+            802.3ad ae0;
+        }
+    }
+    xe-3/0/1 {
+        gigether-options {
+            802.3ad ae0;
+        }
+    }
+    xe-3/0/3 {
+        disable;
+        inactive: gigether-options {
+            802.3ad ae0;
+        }
+    }
+    et-3/1/0 {
+        gigether-options {
+            802.3ad ae2;
+        }
+    }
+    xe-3/2/0 {
+        gigether-options {
+            802.3ad ae0;
+        }
+    }
+    xe-3/2/1 {
+        gigether-options {
+            802.3ad ae0;
+        }
+    }
+    xe-3/2/2 {
+        gigether-options {
+            802.3ad ae0;
+        }
+    }
+    xe-3/2/3 {
+        disable;
+        inactive: gigether-options {
+            802.3ad ae0;
+        }
+    }
+    et-3/3/0 {
+        gigether-options {
+            802.3ad ae2;
+        }
+    }
+    xe-5/0/0 {
+        gigether-options {
+            802.3ad ae0;
+        }
+    }
+    xe-5/0/1 {
+        gigether-options {
+            802.3ad ae0;
+        }
+    }
+    et-5/1/0 {
+        description CCL-MPLS-NORTH-Link-from-MX480-01-et-5/1/0-to-PTX-1-et-2/1/1;
+        gigether-options {
+            802.3ad ae5;
+        }
+    }
+    et-5/3/0 {
+        description CCL-MPLS-NORTH-Link-from-MX480-01-et-5/3/0-to-PTX-1-et-2/1/2;
+        gigether-options {
+            802.3ad ae5;
+        }
+    }
+    ae0 {
+        apply-groups MICRO-BFD-GR;
+        description CCL-MPLS-NORTH-Link-from-MX480-1-ae0-to-MX960-1-ae0;
+        mtu 9192;
+        aggregated-ether-options {
+            bfd-liveness-detection {
+                neighbor 192.168.0.11;
+                local-address 192.168.0.9;
+            }
+            minimum-links 1;
+            link-speed 10g;
+            lacp {
+                active;
+                periodic fast;
+            }
+        }
+        unit 0 {
+            family inet {
+                address 10.10.91.9/24;
+            }
+            family iso;
+            family inet6 {
+                address 2001:10:10:91::9/64;
+            }
+            family mpls {
+                maximum-labels 5;
+            }
+        }
+    }
+    ae2 {
+        inactive: apply-groups GR-CORE-INTF-L3;
+        description CCL-MPLS-NORTH-Link-from-MX480-1-ae2-to-PTX-2-ae15;
+        mtu 9192;
+        aggregated-ether-options {
+            inactive: bfd-liveness-detection {
+                neighbor 192.168.0.7;
+                local-address 192.168.0.9;
+            }
+            minimum-links 1;
+            lacp {
+                active;
+            }
+        }
+        unit 0 {
+            traps;
+            family inet {
+                address 10.10.97.9/24;
+            }
+            family iso;
+            family inet6 {
+                address 2001:10:10:97::9/64;
+            }
+            family mpls {
+                maximum-labels 5;
+            }
+        }
+    }
+    ae5 {
+        inactive: apply-groups GR-CORE-INTF-L3;
+        description CCL-MPLS-NORTH-Link-from-MX480-1-ae5-to-PTX-1-ae5;
+        mtu 9192;
+        aggregated-ether-options {
+            inactive: bfd-liveness-detection {
+                neighbor 192.168.0.6;
+                local-address 192.168.0.9;
+            }
+            minimum-links 1;
+            lacp {
+                active;
+            }
+        }
+        unit 0 {
+            family inet {
+                address 10.10.96.9/24;
+            }
+            family iso;
+            family inet6 {
+                address 2001:10:10:96::9/64;
+            }
+            family mpls {
+                maximum-labels 5;
+                filter {
+                    inactive: output MPLS-EXP;
+                }
+            }
+        }
+    }
+    lo0 {
+        unit 0 {
+            family inet {
+                address 192.168.0.9/32;
+            }
+            family iso {
+                address 49.0001.1921.6800.0009.00;
+            }
+            family inet6 {
+                address 2001:192:168::9/128;
+            }
+        }
+    }
+}
+policy-options {
+    prefix-list MX-BNG {
+        172.16.0.0/16;
+    }
+    prefix-list IPv6-Client {
+        fc10:10::/32;
+        fc20:10::/32;
+    }
+    prefix-list MX-BNG-2 {
+        198.0.0.0/17;
+    }
+    prefix-list PR-STC-INTERNAL {
+        192.168.0.0/16;
+    }
+    prefix-list PR-SSH-CLIENTS {
+        152.152.5.0/24;
+    }
+    prefix-list PR-TELNET-CLIENTS {
+        10.72.71.146/32;
+        10.72.71.150/32;
+        152.152.5.140/32;
+        152.152.5.157/32;
+        152.152.5.175/32;
+        152.152.5.180/32;
+        152.152.5.235/32;
+        152.152.5.236/32;
+        152.152.5.240/28;
+        172.20.95.33/32;
+        172.20.95.34/32;
+        172.20.95.35/32;
+        172.20.95.36/32;
+        172.20.95.37/32;
+        172.20.95.38/32;
+        172.21.24.38/32;
+        172.21.24.82/32;
+        172.21.24.108/32;
+        172.29.58.1/32;
+        172.29.58.2/32;
+        172.29.58.3/32;
+        172.29.58.4/32;
+        172.29.58.5/32;
+        172.29.58.6/32;
+        192.168.32.0/20;
+        192.168.92.0/22;
+        192.168.96.0/19;
+        192.168.128.0/18;
+    }
+    prefix-list PR-SSH-DESTINATIONS {
+        192.168.0.0/16;
+    }
+    prefix-list PR-TELNET-DESTINATIONS {
+        192.168.0.0/16;
+    }
+    prefix-list PR-LDP-EXCLUDED {
+        192.168.17.0/24;
+        192.168.20.0/24;
+        192.168.21.0/24;
+        192.168.50.0/24;
+        192.168.92.0/24;
+        192.168.93.0/24;
+        192.168.94.0/24;
+        192.168.95.0/24;
+        192.168.112.0/24;
+        192.168.114.0/24;
+        192.168.116.0/24;
+        192.168.186.0/24;
+    }
+    prefix-list PR-LDP-INCLUDED {
+        192.168.0.0/16;
+    }
+    prefix-list PR-OSPF-PREFIXES {
+        192.168.0.0/16;
+    }
+    prefix-list PR-RSVP-PREFIXES {
+        192.168.0.0/16;
+    }
+    prefix-list PR-BGP-NEIGHBORS {
+        apply-path "protocols bgp group <*> neighbor <*>";
+    }
+    prefix-list PR-SMALL-POLLING-HOSTS {
+        apply-path "snmp community <*> clients <*>";
+    }
+    prefix-list PR-NTP-NEIGHBORS {
+        apply-path "system ntp server <*>";
+    }
+    prefix-list PR-DNS-SERVERS {
+        apply-path "system name-server <*>";
+    }
+    prefix-list PR-BGP-VRF-NEIGHBORS {
+        apply-path "routing-instances <*> protocols bgp group <*> neighbor <*>";
+    }
+    prefix-list PR-REGIONAL-PRE-AGGS {
+        apply-path "protocols bgp group IBGP-TO-PRE-AGG neighbor <*>";
+    }
+    prefix-list PR-TACPLUS-SERVER {
+        apply-path "system tacplus-server <*>";
+    }
+    prefix-list PR-RADIUS-SERVER {
+        apply-path "system radius-server <*>";
+    }
+    policy-statement EXPORT-POOL {
+        term 1 {
+            from {
+                protocol static;
+                prefix-list MX-BNG;
+                prefix-list MX-BNG-2;
+            }
+            then accept;
+        }
+        term 2 {
+            then reject;
+        }
+    }
+    policy-statement IxiaIPv6 {
+        term Subscriber {
+            from {
+                family inet6;
+                protocol [ direct local access ];
+            }
+        }
+    }
+    policy-statement LOAD-BALANCE {
+        term LOAD-BALANCE-ALL {
+            then {
+                load-balance per-packet;
+            }
+        }
+        then {
+            load-balance per-packet;
+        }
+    }
+    policy-statement NHS {
+        term 1 {
+            then {
+                next-hop self;
+                accept;
+            }
+        }
+    }
+    policy-statement NHS-IPv6 {
+        term external {
+            from {
+                family inet6;
+                protocol bgp;
+                route-type external;
+            }
+            then {
+                next-hop self;
+                accept;
+            }
+        }
+        term Subscriber {
+            from {
+                family inet6;
+                protocol [ direct local access-internal access ];
+            }
+            then accept;
+        }
+    }
+    policy-statement PIM-RPF-VECTOR {
+        term A {
+            from {
+                source-address-filter 192.168.0.2/32 exact;
+            }
+            then accept;
+        }
+        term B {
+            from {
+                source-address-filter 192.168.0.1/32 exact;
+            }
+            then accept;
+        }
+    }
+    policy-statement PL-BGP-LOOPBACK-EXPORT {
+        term LOCAL-LOOPBACK {
+            from {
+                protocol direct;
+                rib inet.3;
+                interface lo0.0;
+            }
+            then {
+                aigp-originate;
+                next-hop self;
+                accept;
+            }
+        }
+    }
+    policy-statement PL-BGP-NHS {
+        term ALL {
+            then {
+                next-hop self;
+            }
+        }
+    }
+    policy-statement PL-HIGH-MED {
+        then {
+            metric 60000;
+        }
+    }
+    policy-statement PL-ISIS-BLOCK-L1-EXPORT {
+        term L1-TO-L2 {
+            from level 1;
+            then reject;
+        }
+    }
+    policy-statement PL-ISIS-EXPORT {
+        inactive: term LOCAL-LOOPBACK-L1 {
+            from {
+                protocol direct;
+                interface lo0.0;
+                route-filter 0.0.0.0/0 prefix-length-range /32-/32;
+            }
+            to level 1;
+            then {
+                tag 100;
+                /* Set the down-bit while leaking local loopback into L1 */
+                color2 1;
+                accept;
+            }
+        }
+        inactive: term LOCAL-LOOPBACK {
+            from {
+                protocol direct;
+                interface lo0.0;
+                route-filter 0.0.0.0/0 prefix-length-range /32-/32;
+            }
+            then {
+                tag 100;
+                accept;
+            }
+        }
+        inactive: term DIRECT-ROUTES {
+            from {
+                protocol direct;
+                interface [ ae0.0 ae1.0 ae3.0 ae4.0 et-2/0/3:0.0 et-2/0/3:1.0 ae2.0 ae5.0 xe-2/0/2.0 ];
+            }
+            then accept;
+        }
+        term L2-TO-L1-LEAKING {
+            from {
+                protocol isis;
+                level 2;
+                route-filter 192.168.0.0/24 orlonger;
+                route-filter 176.176.1.0/24 exact;
+                route-filter 55.3.101.0/24 exact;
+                route-filter 192.5.1.0/24 exact;
+                route-filter 55.1.101.0/24 exact;
+            }
+            to {
+                protocol isis;
+                level 1;
+            }
+            then accept;
+        }
+        term L1-TO-L2 {
+            from {
+                protocol isis;
+                level 1;
+                route-filter 192.3.1.0/24 exact;
+            }
+            then accept;
+        }
+        inactive: term L1-TO-L2-BLOCK {
+            from {
+                protocol isis;
+                level 1;
+            }
+            then reject;
+        }
+        then {
+            inactive: reject;
+        }
+    }
+    policy-statement PL-LOAD-BALANCE {
+        then {
+            load-balance per-packet;
+        }
+    }
+    policy-statement PL-LOCAL-LOOPBACK {
+        term LOCAL-LOOPBACK {
+            from {
+                protocol direct;
+                interface lo0.0;
+                route-filter 0.0.0.0/0 prefix-length-range /32-/32;
+            }
+            then {
+                community add CM-LOOPBACKS-000;
+                accept;
+            }
+        }
+        then reject;
+    }
+    policy-statement PL-REGIONAL-PRE-AGGS {
+        term REGIONAL-PRE-AGGS {
+            from {
+                protocol bgp;
+                rib inet.0;
+                community CM-LOOPBACKS-ALL;
+                prefix-list PR-REGIONAL-PRE-AGGS;
+            }
+            then {
+                load-balance per-packet;
+                ##
+                ## Warning: statement ignored: unsupported platform (mx480)
+                ##
+                install-to-fib;
+                accept;
+            }
+        }
+        from {
+            protocol bgp;
+            rib inet.0;
+        }
+        ##
+        ## Warning: statement ignored: unsupported platform (mx480)
+        ##
+        then no-install-to-fib;
+    }
+    policy-statement PL-REMOTE-LOOPBACKS {
+        term ALL-LOOPBACKS {
+            from protocol bgp;
+            then {
+                community add CM-NO-ADVERTISE;
+                accept;
+            }
+        }
+        then reject;
+    }
+    policy-statement TED-to-NS {
+        term 1 {
+            from family traffic-engineering;
+            then accept;
+        }
+    }
+    community CM-LOOPBACKS-000 members 65000:11000;
+    community CM-LOOPBACKS-ALL members 65000:11...;
+    community CM-NO-ADVERTISE members no-advertise;
+}
+firewall {
+    family inet {
+        filter 8M-downstream {
+            interface-specific;
+            term 1 {
+                then policer 8192;
+            }
+        }
+        filter 8192-downstream {
+            interface-specific;
+            term 1 {
+                then policer 8M-downstream;
+            }
+        }
+        filter 18432k-downstream {
+            interface-specific;
+            term 1 {
+                then policer 18M-downstream;
+            }
+        }
+        filter 8M-upstream {
+            interface-specific;
+            term 1 {
+                then policer 8192;
+            }
+        }
+        filter 8192-upstream {
+            interface-specific;
+            term 1 {
+                then policer 8M-upstream;
+            }
+        }
+        filter 18432k-upstream {
+            interface-specific;
+            term 1 {
+                then policer 18M-upstream;
+            }
+        }
+        filter 1M-upload {
+            interface-specific;
+            term 1 {
+                then policer 18M-upstream;
+            }
+        }
+        filter 100M-download {
+            interface-specific;
+            term 1 {
+                then policer 8M-downstream;
+            }
+        }
+        filter BLOCK {
+            interface-specific;
+            term 1 {
+                from {
+                    destination-address {
+                        8.8.8.8/32;
+                        10.200.20.1/32;
+                    }
+                }
+                then {
+                    count Dest;
+                    accept;
+                }
+            }
+            term 2 {
+                from {
+                    source-address {
+                        10.200.20.1/32;
+                    }
+                }
+                then {
+                    count Source;
+                    accept;
+                }
+            }
+            term 4 {
+                then {
+                    count Reject;
+                    reject;
+                }
+            }
+        }
+        filter PERMIT_ALL {
+            interface-specific;
+            term ALL {
+                then accept;
+            }
+        }
+        filter IP-PREC {
+            term EXP0 {
+                from {
+                    precedence 0;
+                }
+            }
+            term PREC0 {
+                from {
+                    precedence 0;
+                }
+                then {
+                    count PREC0;
+                    accept;
+                }
+            }
+            term PREC1 {
+                from {
+                    precedence 1;
+                }
+                then {
+                    count PREC1;
+                    accept;
+                }
+            }
+            term PREC2 {
+                from {
+                    precedence 2;
+                }
+                then {
+                    count PREC2;
+                    accept;
+                }
+            }
+            term PREC3 {
+                from {
+                    precedence 3;
+                }
+                then {
+                    count PREC3;
+                    accept;
+                }
+            }
+            term PREC4 {
+                from {
+                    precedence 4;
+                }
+                then {
+                    count PREC4;
+                    accept;
+                }
+            }
+            term PREC5 {
+                from {
+                    precedence 5;
+                }
+                then {
+                    count PREC5;
+                    accept;
+                }
+            }
+            term PREC6 {
+                from {
+                    precedence 6;
+                }
+                then {
+                    count PREC6;
+                    accept;
+                }
+            }
+            term PREC7 {
+                from {
+                    precedence 7;
+                }
+                then {
+                    count PREC7;
+                    accept;
+                }
+            }
+        }
+    }
+    family inet6 {
+        filter PERMIT_ALL-V6 {
+            interface-specific;
+            term ALL {
+                then accept;
+            }
+        }
+        filter 20M-upstream-v6 {
+            interface-specific;
+            term ALL {
+                then accept;
+            }
+        }
+        filter 20M-downstream-v6 {
+            interface-specific;
+            term ALL {
+                then accept;
+            }
+        }
+        filter ipv6-fail-filter {
+            term icmpv6 {
+                from {
+                    source-address {
+                        fe80::/10;
+                    }
+                    destination-address {
+                        fc10::/8;
+                    }
+                    next-header icmp6;
+                    icmp-type 133;
+                }
+                then accept;
+            }
+            term dhcpv6 {
+                from {
+                    source-address {
+                        fe80::/10;
+                    }
+                    destination-address {
+                        fc10::/8;
+                    }
+                    next-header udp;
+                    source-port 546;
+                    destination-port 547;
+                }
+                then accept;
+            }
+            term discard {
+                then {
+                    count RPFv6-Drop;
+                    discard;
+                }
+            }
+        }
+    }
+    family mpls {
+        filter ingress-exp-filter {
+            term term-one {
+                from {
+                    exp 3;
+                }
+                then {
+                    count counter0;
+                    accept;
+                }
+            }
+            term term-two {
+                then {
+                    count counter1;
+                    accept;
+                }
+            }
+        }
+        filter MPLS-EXP {
+            term EXP0 {
+                from {
+                    exp 0;
+                }
+                then {
+                    count EXP0;
+                    accept;
+                }
+            }
+            term EXP1 {
+                from {
+                    exp 1;
+                }
+                then {
+                    count EXP1;
+                    accept;
+                }
+            }
+            term EXP2 {
+                from {
+                    exp 2;
+                }
+                then {
+                    count EXP2;
+                    accept;
+                }
+            }
+            term EXP3 {
+                from {
+                    exp 3;
+                }
+                then {
+                    count EXP3;
+                    accept;
+                }
+            }
+            term EXP4 {
+                from {
+                    exp 4;
+                }
+                then {
+                    count EXP4;
+                    accept;
+                }
+            }
+            term EXP5 {
+                from {
+                    exp 5;
+                }
+                then {
+                    count EXP5;
+                    accept;
+                }
+            }
+            term EXP6 {
+                from {
+                    exp 6;
+                }
+                then {
+                    count EXP6;
+                    accept;
+                }
+            }
+            term EXP7 {
+                from {
+                    exp 7;
+                }
+                then {
+                    count EXP7;
+                    accept;
+                }
+            }
+        }
+    }
+    policer 8192 {
+        logical-interface-policer;
+        if-exceeding {
+            bandwidth-limit 7m;
+            burst-size-limit 2m;
+        }
+        then discard;
+    }
+    policer 8M-downstream {
+        logical-interface-policer;
+        if-exceeding {
+            bandwidth-limit 8m;
+            burst-size-limit 1m;
+        }
+        then discard;
+    }
+    policer 18M-downstream {
+        logical-interface-policer;
+        if-exceeding {
+            bandwidth-limit 14m;
+            burst-size-limit 1850000;
+        }
+        then discard;
+    }
+    policer 8M-upstream {
+        logical-interface-policer;
+        if-exceeding {
+            bandwidth-limit 8m;
+            burst-size-limit 1m;
+        }
+        then discard;
+    }
+    policer 18M-upstream {
+        logical-interface-policer;
+        if-exceeding {
+            bandwidth-limit 14m;
+            burst-size-limit 1850000;
+        }
+        then discard;
+    }
+}
+routing-options {
+    nonstop-routing;
+    static {
+        route 0.0.0.0/0 next-hop 10.85.88.1;
+    }
+    router-id 192.168.0.9;
+    autonomous-system 65000;
+    forwarding-table {
+        export LOAD-BALANCE;
+        indirect-next-hop;
+    }
+}
+protocols {
+    ldp {
+        traffic-statistics {
+            file ldp-traffic-statistics size 2m files 10 world-readable;
+        }
+        l2-smart-policy;
+        track-igp-metric;
+        deaggregate;
+        transport-address 192.168.0.9;
+        interface ae0.0;
+        interface ae2.0;
+        interface ae5.0;
+        interface lo0.0;
+        session-group 84.235.122.5/32;
+        session-protection;
+        log-updown {
+            trap disable;
+        }
+    }
+    isis {
+        traceoptions {
+            file isis size 10m files 5 world-readable;
+            flag error detail;
+            flag state detail;
+        }
+        lsp-lifetime 65535;
+        spf-options {
+            delay 50;
+            holddown 5000;
+            rapid-runs 3;
+        }
+        overload {
+            timeout 300;
+            advertise-high-metrics;
+        }
+        level 1 disable;
+        level 2 wide-metrics-only;
+        interface ae0.0 {
+            ldp-synchronization;
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                hello-authentication-key "$9$jnH.f6/AIhyYgZDHmQz"; ## SECRET-DATA
+                hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface ae2.0 {
+            ldp-synchronization;
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                inactive: hello-authentication-key "$9$zQej3/AIRcML7ikfQ39u0"; ## SECRET-DATA
+                inactive: hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface ae5.0 {
+            ldp-synchronization;
+            point-to-point;
+            family inet {
+                bfd-liveness-detection {
+                    minimum-interval 100;
+                    multiplier 3;
+                    no-adaptation;
+                }
+            }
+            level 2 {
+                metric 10000;
+                inactive: hello-authentication-key "$9$Ep5crK7NVoZDCtBRclW8"; ## SECRET-DATA
+                inactive: hello-authentication-type md5;
+                hold-time 3;
+            }
+        }
+        interface lo0.0;
+    }
+    rsvp {
+        apply-groups RSVP-PARAMETERS;
+        interface em0.0 {
+            disable;
+        }
+        interface ae2.0 {
+            authentication-key "$9$AK6BpOIleM-bY5Q6CpBhc"; ## SECRET-DATA
+        }
+        interface ae5.0 {
+            authentication-key "$9$s42oZq.f6Cp8Xdw2aDj"; ## SECRET-DATA
+        }
+        interface ae0.0 {
+            authentication-key "$9$YIgaG.m5/AuLxVsgJji"; ## SECRET-DATA
+        }
+    }
+    mpls {
+        optimize-aggressive;
+        smart-optimize-timer 180;
+        no-propagate-ttl;
+        sensor-based-stats;
+        ipv6-tunneling;
+        icmp-tunneling;
+        optimize-timer 1200;
+        interface em0.0 {
+            disable;
+        }
+        interface ae2.0;
+        interface ae5.0;
+        interface ae0.0;
+    }
+}
+
+{master}
