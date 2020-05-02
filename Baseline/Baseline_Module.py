@@ -1,5 +1,6 @@
 from netmiko import ConnectHandler
 import time, sys, re  
+from prettytable import PrettyTable
 
 def isis_check_with_conf(device_ip):
     # Func to check ISIS neighbours based on ISIS Config 
@@ -41,6 +42,9 @@ def isis_check_with_conf(device_ip):
     l2_isis = 0
     
     b = []
+        
+    # Code For Final Result Display
+    t = PrettyTable(['Interface', 'ISIS_State'])
     
     #Code to loop over each interface in config and check whether they are Up & Level2
     for item in interface_list:
@@ -53,16 +57,23 @@ def isis_check_with_conf(device_ip):
                 if ((a[2] == '2') and ('Up' in a)):
                     up_isis = up_isis + 1
                     l2_isis = l2_isis + 1
+                    t.add_row([item, 'Up'])
                 elif 'Up' in a:  
                     up_isis = up_isis + 1
+                    t.add_row([item, 'Up'])
+                break    
      
     #Code to loop over each interface in config and check whether they are present in the ISIS Adj list
     for item in interface_list:
         if item not in b:
-            print("ISIS Neighbor " + item + " is not Up")
+            t.add_row([item, 'Down or Not Configured'])
                  
                         
-    
+    print('------------------------------------------------------')
+    print('------------------------------------------------------')
+    print(t)             
+    print('------------------------------------------------------')
+    print('------------------------------------------------------')   
                        
     down_isis = len(interface_list) - up_isis                           
     
@@ -103,6 +114,9 @@ def isis_check_db(device_ip):
     
     b = []
     
+    # Code For Final Result Display
+    t = PrettyTable(['Interface', 'ISIS_State'])
+    
     #Code to loop over each interface in config and check whether they are Up & Level2
     for item in interface_list:
         for line in isis:
@@ -114,16 +128,23 @@ def isis_check_db(device_ip):
                 if ((a[2] == '2') and ('Up' in a)):
                     up_isis = up_isis + 1
                     l2_isis = l2_isis + 1
+                    t.add_row([item, 'Up'])
                 elif 'Up' in a:  
-                    up_isis = up_isis + 1
+                    up_isis = up_isis + 1   
+                    t.add_row([item, 'Up'])
                 break    
      
     #Code to loop over each interface in config and check whether they are present in the ISIS Adj list
     for item in interface_list:
         if item not in b:
-            print("ISIS Neighbor " + item + " is not Up")
-                 
-                        
+            t.add_row([item, 'Down or Not Configured'])
+            
+            
+    print('------------------------------------------------------')
+    print('------------------------------------------------------')
+    print(t)             
+    print('------------------------------------------------------')
+    print('------------------------------------------------------')                    
     
                        
     down_isis = len(interface_list) - up_isis   
@@ -132,5 +153,4 @@ def isis_check_db(device_ip):
     print(str(up_isis) + " ISIS Neighbors Are Up")
     print(str(l2_isis) + " ISIS Neighbors Are Level 2")
     print(str(down_isis) + " ISIS Neighbors Are Down")
-        
-
+    
