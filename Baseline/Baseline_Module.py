@@ -1,5 +1,5 @@
 from netmiko import ConnectHandler
-import time, sys, re  
+import time, sys, re, os
 from prettytable import PrettyTable
 
 def isis_check_with_conf(device_ip):
@@ -80,6 +80,16 @@ def isis_check_with_conf(device_ip):
     print(str(up_isis) + " ISIS Neighbors Are Up")
     print(str(l2_isis) + " ISIS Neighbors Are Level 2")
     print(str(down_isis) + " ISIS Neighbors Are Down")
+    
+    # Code to remove the .txt files are script run
+    if os.path.exists("isis.txt"):
+        os.remove("isis.txt")
+
+    
+    if os.path.exists("isis_conf.txt"):
+        os.remove("isis_conf.txt")        
+        
+        
 
 def isis_check_db(device_ip):
     # Func to check ISIS neighbours based on Interfaces in CSV File 
@@ -153,4 +163,7 @@ def isis_check_db(device_ip):
     print(str(up_isis) + " ISIS Neighbors Are Up")
     print(str(l2_isis) + " ISIS Neighbors Are Level 2")
     print(str(down_isis) + " ISIS Neighbors Are Down")
-    
+   
+    # Code to remove the .txt files are script run
+    if os.path.exists("isis.txt"):
+        os.remove("isis.txt")
