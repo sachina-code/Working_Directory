@@ -1,5 +1,8 @@
-import Baseline_Module
+#! /usr/bin/env python
 
-Baseline_Module.isis_check_db('10.85.88.25')
+import sys, Baseline_Module
+
+print(sys.argv)
+Baseline_Module.isis_check_db(sys.argv[1])
 
 
