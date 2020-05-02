@@ -2,6 +2,7 @@ from netmiko import ConnectHandler
 import time, sys, re  
 
 def isis_check_with_conf(device_ip):
+    # Func to check ISIS neighbours based on ISIS Config 
     jnpr = {'device_type': 'juniper', 'host': device_ip, 'username': 'stc', 'password': 'Password1'}
     net_connect = ConnectHandler(**jnpr)
     time.sleep(2)
@@ -25,7 +26,7 @@ def isis_check_with_conf(device_ip):
         isis = f3.readlines()    
         
     
-    
+    #List of interfaces from Protocol ISIS Config
     interface_list = []    
     
         
@@ -34,12 +35,14 @@ def isis_check_with_conf(device_ip):
         if intf:
             interface_list.append((intf.group(1)))
      
+    #Counters to have the number of Up, Down neighbours and L2 Neighbours 
     up_isis = 0
     down_isis = 0
     l2_isis = 0
     
     b = []
     
+    #Code to loop over each interface in config and check whether they are Up & Level2
     for item in interface_list:
         for line in isis:
             if item in line: 
@@ -53,7 +56,7 @@ def isis_check_with_conf(device_ip):
                 elif 'Up' in a:  
                     up_isis = up_isis + 1
      
-    
+    #Code to loop over each interface in config and check whether they are present in the ISIS Adj list
     for item in interface_list:
         if item not in b:
             print("ISIS Neighbor " + item + " is not Up")
@@ -68,6 +71,7 @@ def isis_check_with_conf(device_ip):
     print(str(down_isis) + " ISIS Neighbors Are Down")
 
 def isis_check_db(device_ip):
+    # Func to check ISIS neighbours based on Interfaces in CSV File 
     jnpr = {'device_type': 'juniper', 'host': device_ip, 'username': 'stc', 'password': 'Password1'}
     net_connect = ConnectHandler(**jnpr)
     time.sleep(2)
@@ -81,7 +85,7 @@ def isis_check_db(device_ip):
     with open('isis.txt', 'r') as f3:
         isis = f3.readlines()    
         
-    
+    #Code to read the interfaces from the csv file 
     with open('isis.csv','r') as csv_file:
         lines = csv_file.readlines()
     
@@ -92,13 +96,14 @@ def isis_check_db(device_ip):
 
     interface_list.pop(0)       
      
+    #Counters to have the number of Up, Down neighbours and L2 Neighbours  
     up_isis = 0
     down_isis = 0
     l2_isis = 0
     
     b = []
     
-    
+    #Code to loop over each interface in config and check whether they are Up & Level2
     for item in interface_list:
         for line in isis:
             if item in line: 
@@ -113,7 +118,7 @@ def isis_check_db(device_ip):
                     up_isis = up_isis + 1
                 break    
      
-    
+    #Code to loop over each interface in config and check whether they are present in the ISIS Adj list
     for item in interface_list:
         if item not in b:
             print("ISIS Neighbor " + item + " is not Up")
