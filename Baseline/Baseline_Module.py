@@ -2,6 +2,7 @@ from netmiko import ConnectHandler
 import time, sys, re, os
 from prettytable import PrettyTable
 
+
 def isis_check_with_conf(device_ip):
     # Func to check ISIS neighbours based on ISIS Config 
     jnpr = {'device_type': 'juniper', 'host': device_ip, 'username': 'stc', 'password': 'Password1'}
