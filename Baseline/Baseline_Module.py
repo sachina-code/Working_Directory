@@ -1,6 +1,7 @@
 from netmiko import ConnectHandler
 import time, sys, re, os
 from prettytable import PrettyTable
+from stc_cred import return_cred
 
 
 def isis_check_with_conf(device_ip):
@@ -8,8 +9,8 @@ def isis_check_with_conf(device_ip):
     jnpr = {
         "device_type": "juniper",
         "host": device_ip,
-        "username": "stc",
-        "password": "Password1",
+        "username": return_cred()[0],
+        "password": return_cred()[1],
     }
     net_connect = ConnectHandler(**jnpr)
     time.sleep(2)
@@ -96,8 +97,8 @@ def isis_check_db(device_ip):
     jnpr = {
         "device_type": "juniper",
         "host": device_ip,
-        "username": "stc",
-        "password": "Password1",
+        "username": return_cred()[0],
+        "password": return_cred()[1],
     }
     net_connect = ConnectHandler(**jnpr)
     time.sleep(2)
