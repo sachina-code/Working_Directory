@@ -2,3 +2,6 @@ CoreDump_Script/*.txt
 *.txt
 .env
 *.pyc
+
+
+!requirements.txt
