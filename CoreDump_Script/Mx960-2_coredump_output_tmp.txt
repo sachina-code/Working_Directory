@@ -1,0 +1,19 @@
+re0:
+--------------------------------------------------------------------------
+/var/crash/*core*: No such file or directory
+/var/tmp/*core*: No such file or directory
+/var/tmp/pics/*core*: No such file or directory
+/var/crash/kernel.*: No such file or directory
+/var/jails/rest-api/tmp/*core*: No such file or directory
+/tftpboot/corefiles/*core*: No such file or directory
+
+re1:
+--------------------------------------------------------------------------
+/var/crash/*core*: No such file or directory
+/var/tmp/*core*: No such file or directory
+/var/tmp/pics/*core*: No such file or directory
+/var/crash/kernel.*: No such file or directory
+/var/jails/rest-api/tmp/*core*: No such file or directory
+/tftpboot/corefiles/*core*: No such file or directory
+
+{master}

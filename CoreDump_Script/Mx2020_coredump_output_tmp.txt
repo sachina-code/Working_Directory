@@ -1,0 +1,21 @@
+re0:
+--------------------------------------------------------------------------
+/var/crash/*core*: No such file or directory
+-rw-rw----  1 root  wheel    1086766 Apr 28 21:00 /var/tmp/pccd.core-tarball.0.tgz
+-rw-rw----  1 root  wheel    1080617 Apr 29 11:55 /var/tmp/pccd.core-tarball.1.tgz
+/var/tmp/pics/*core*: No such file or directory
+/var/crash/kernel.*: No such file or directory
+/var/jails/rest-api/tmp/*core*: No such file or directory
+/tftpboot/corefiles/*core*: No such file or directory
+total files: 2
+
+re1:
+--------------------------------------------------------------------------
+/var/crash/*core*: No such file or directory
+/var/tmp/*core*: No such file or directory
+/var/tmp/pics/*core*: No such file or directory
+/var/crash/kernel.*: No such file or directory
+/var/jails/rest-api/tmp/*core*: No such file or directory
+/tftpboot/corefiles/*core*: No such file or directory
+
+{master}

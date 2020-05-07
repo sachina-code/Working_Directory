@@ -1,0 +1,18 @@
+re0:
+--------------------------------------------------------------------------
+/var/crash/*core*: No such file or directory
+-rwxrwxrwx  1 root  wheel    2820951 Jan 7   2019 /var/tmp/chassisd.core.0.gz*
+/var/tmp/pics/*core*: No such file or directory
+/var/crash/kernel.*: No such file or directory
+/var/jails/rest-api/tmp/*core*: No such file or directory
+/tftpboot/corefiles/*core*: No such file or directory
+total files: 1
+re1:
+--------------------------------------------------------------------------
+/var/crash/*core*: No such file or directory
+/var/tmp/*core*: No such file or directory
+/var/tmp/pics/*core*: No such file or directory
+/var/crash/kernel.*: No such file or directory
+/var/jails/rest-api/tmp/*core*: No such file or directory
+/tftpboot/corefiles/*core*: No such file or directory
+{master}
