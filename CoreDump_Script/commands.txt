@@ -1,1 +1,0 @@
-show system core-dumps routing-engine both 
