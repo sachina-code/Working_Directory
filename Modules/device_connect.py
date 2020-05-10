@@ -8,5 +8,4 @@ def device_connect(dev_ip, uname, pwd):
         "username": uname,
         "password": pwd,
     }
-    net_connect = ConnectHandler(**jnpr)
-    return net_connect
+    return ConnectHandler(**jnpr)
