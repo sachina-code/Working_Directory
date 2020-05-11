@@ -1,27 +1,19 @@
-from netmiko import ConnectHandler
-import time, sys, re, os
+from device_connect import device_connect
+import time, sys, re, os, stc_cred
 from prettytable import PrettyTable
-import stc_cred 
 
 
 def isis_check_with_conf(device_ip):
     # Func to check ISIS neighbours based on ISIS Config
-    jnpr = {
-        "device_type": "juniper",
-        "host": device_ip,
-        "username": stc_cred.user_name,
-        "password": stc_cred.password,
-    }
-    net_connect = ConnectHandler(**jnpr)
+    jnpr_connect = device_connect(device_ip, stc_cred.user_name, stc_cred.password)
+    output = jnpr_connect.send_command("set cli screen-length 0\n")
     time.sleep(2)
-    output = net_connect.send_command("set cli screen-length 0\n")
-    time.sleep(2)
-    output = net_connect.send_command("show configuration protocols isis\n")
+    output = jnpr_connect.send_command("show configuration protocols isis\n")
 
     with open("isis_conf.txt", "w+") as f:
         f.write(output)
 
-    output = net_connect.send_command("show isis adjacency\n")
+    output = jnpr_connect.send_command("show isis adjacency\n")
 
     with open("isis.txt", "w+") as f1:
         f1.write(output)
@@ -94,17 +86,10 @@ def isis_check_with_conf(device_ip):
 
 def isis_check_db(device_ip):
     # Func to check ISIS neighbours based on Interfaces in CSV File
-    jnpr = {
-        "device_type": "juniper",
-        "host": device_ip,
-        "username": stc_cred.user_name,
-        "password": stc_cred.password,
-    }
-    net_connect = ConnectHandler(**jnpr)
+    jnpr_connect = device_connect(device_ip, stc_cred.user_name, stc_cred.password)
+    output = jnpr_connect.send_command("set cli screen-length 0\n")
     time.sleep(2)
-    output = net_connect.send_command("set cli screen-length 0\n")
-    time.sleep(2)
-    output = net_connect.send_command("show isis adjacency\n")
+    output = jnpr_connect.send_command("show isis adjacency\n")
 
     with open("isis.txt", "w+") as f1:
         f1.write(output)
@@ -171,3 +156,55 @@ def isis_check_db(device_ip):
     # Code to remove the .txt files are script run
     if os.path.exists("isis.txt"):
         os.remove("isis.txt")
+
+
+def read_bgp_data():
+    # Code to read the neighbor IPs from the csv file and write them into a list
+    with open("isis_and_bgp.csv", "r") as csv_file:
+        lines = csv_file.readlines()
+        neighbor_list = []
+        for line in lines:
+            data = line.rstrip().split(",")
+            neighbor_list.append(data[1])
+        neighbor_list.pop(0)
+        return neighbor_list
+
+
+def check_neighbor_status(neighbor_ip, a):
+    # Code to check BGP neighbor status when Neighbor IP and device_connection_object is passed as arguments
+    output = a.send_command("show bgp neighbor " + neighbor_ip)
+    if "Established" in output:
+        return True
+    else:
+        return False
+
+
+def bgp_check_db(device_ip):
+    # Func to iterate on the list of BGP neighbors and print their status in table format
+    jnpr_connect = device_connect(device_ip, stc_cred.user_name, stc_cred.password)
+
+    neighbor_table = PrettyTable(["Neighbor", "BGP_State"])
+
+    neighbor_up_count = 0
+    neighbor_down_count = 0
+    neighbor_total_count = len(read_bgp_data())
+
+    for neighbor in read_bgp_data():
+        if check_neighbor_status(neighbor, jnpr_connect):
+            # print("Neighbor " + neighbor + " is Up")
+            neighbor_up_count += 1
+            neighbor_table.add_row([neighbor, "Up"])
+        else:
+            # print("Neighbor " + neighbor + " is Down")
+            neighbor_down_count += 1
+            neighbor_table.add_row([neighbor, "Down"])
+
+    print("------------------------------------------------------")
+    print("------------------------------------------------------")
+    print(neighbor_table)
+    print("------------------------------------------------------")
+    print("------------------------------------------------------")
+
+    print("Total Number of BGP neighbors : " + str(neighbor_total_count))
+    print("Number of BGP neighbors Up : " + str(neighbor_up_count))
+    print("Number of BGP neighbors Down : " + str(neighbor_down_count))
