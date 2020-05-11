@@ -7,8 +7,7 @@ def device_conn_check(dev_name):
     with open("devices.csv", "r") as csv_file:
         lines = csv_file.readlines()
 
-    lines.pop(0)
-    for line in lines:
+    for line in lines[1:]:
         if line.split(",")[0] == dev_name:
             try:
                 device_connect(

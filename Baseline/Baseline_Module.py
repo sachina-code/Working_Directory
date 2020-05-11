@@ -1,11 +1,12 @@
 from device_connect import device_connect
 import time, sys, re, os, stc_cred
 from prettytable import PrettyTable
+from device_conn_check import device_conn_check
 
 
-def isis_check_with_conf(device_ip):
+def isis_check_with_conf(device_name):
     # Func to check ISIS neighbours based on ISIS Config
-    jnpr_connect = device_connect(device_ip, stc_cred.user_name, stc_cred.password)
+    jnpr_connect = device_connect(device_conn_check(device_name), stc_cred.user_name, stc_cred.password)
     output = jnpr_connect.send_command("set cli screen-length 0\n")
     time.sleep(2)
     output = jnpr_connect.send_command("show configuration protocols isis\n")
@@ -84,9 +85,9 @@ def isis_check_with_conf(device_ip):
         os.remove("isis_conf.txt")
 
 
-def isis_check_db(device_ip):
+def isis_check_db(device_name):
     # Func to check ISIS neighbours based on Interfaces in CSV File
-    jnpr_connect = device_connect(device_ip, stc_cred.user_name, stc_cred.password)
+    jnpr_connect = device_connect(device_conn_check(device_name), stc_cred.user_name, stc_cred.password)
     output = jnpr_connect.send_command("set cli screen-length 0\n")
     time.sleep(2)
     output = jnpr_connect.send_command("show isis adjacency\n")
@@ -98,8 +99,8 @@ def isis_check_db(device_ip):
         isis = f3.readlines()
 
     # Code to read the interfaces from the csv file
-    with open("isis.csv", "r") as csv_file:
-        lines = csv_file.readlines()
+    with open(device_name + "_isis_and_bgp.csv", "r") as isis_csv_file:
+        lines = isis_csv_file.readlines()
 
     interface_list = []
     for line in lines:
@@ -158,15 +159,14 @@ def isis_check_db(device_ip):
         os.remove("isis.txt")
 
 
-def read_bgp_data():
+def read_bgp_data(device_name):
     # Code to read the neighbor IPs from the csv file and write them into a list
-    with open("isis_and_bgp.csv", "r") as csv_file:
-        lines = csv_file.readlines()
+    with open(device_name + "_isis_and_bgp.csv", "r") as bgp_csv_file:
+        lines = bgp_csv_file.readlines()
         neighbor_list = []
-        for line in lines:
+        for line in lines[1:]:
             data = line.rstrip().split(",")
             neighbor_list.append(data[1])
-        neighbor_list.pop(0)
         return neighbor_list
 
 
@@ -179,17 +179,17 @@ def check_neighbor_status(neighbor_ip, a):
         return False
 
 
-def bgp_check_db(device_ip):
-    # Func to iterate on the list of BGP neighbors and print their status in table format
-    jnpr_connect = device_connect(device_ip, stc_cred.user_name, stc_cred.password)
+def bgp_check_db(device_name):
+    # Func to iterate on the list of BGP neighbors and print their status in table format    
+    jnpr_connect = device_connect(device_conn_check(device_name), stc_cred.user_name, stc_cred.password)
 
     neighbor_table = PrettyTable(["Neighbor", "BGP_State"])
 
     neighbor_up_count = 0
     neighbor_down_count = 0
-    neighbor_total_count = len(read_bgp_data())
+    neighbor_total_count = len(read_bgp_data(device_name))
 
-    for neighbor in read_bgp_data():
+    for neighbor in read_bgp_data(device_name):
         if check_neighbor_status(neighbor, jnpr_connect):
             # print("Neighbor " + neighbor + " is Up")
             neighbor_up_count += 1
@@ -208,3 +208,5 @@ def bgp_check_db(device_ip):
     print("Total Number of BGP neighbors : " + str(neighbor_total_count))
     print("Number of BGP neighbors Up : " + str(neighbor_up_count))
     print("Number of BGP neighbors Down : " + str(neighbor_down_count))
+    
+    
