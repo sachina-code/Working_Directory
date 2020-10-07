@@ -33,8 +33,8 @@ class fileCompare:
         jnpr = {
             "device_type": "juniper",
             "host": self.device_ip,
-            "username": "stc",
-            "password": "Password1",
+            "username": "xxx",
+            "password": "xxx",
         }
         net_connect = ConnectHandler(**jnpr)
         time.sleep(5)
