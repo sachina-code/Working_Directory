@@ -4,8 +4,8 @@ import time, sys, re
 jnpr = {
     "device_type": "juniper",
     "host": "10.85.88.25",
-    "username": "stc",
-    "password": "Password1",
+    "username": "xxx",
+    "password": "xxx",
 }
 net_connect = ConnectHandler(**jnpr)
 time.sleep(2)
