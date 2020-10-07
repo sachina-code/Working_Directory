@@ -42,8 +42,8 @@ class fileCompare:
         jnpr = {
             "device_type": "juniper",
             "host": self.device_ip,
-            "username": "stc",
-            "password": "Password1",
+            "username": "xxx",
+            "password": "xxx",
         }
         net_connect = ConnectHandler(**jnpr)
         time.sleep(5)
@@ -92,8 +92,8 @@ class fileCompare:
 
     def send_mail(self):
 
-        fromaddr = "sachina@juniper.net"
-        toaddr = "sachina@juniper.net"
+        fromaddr = "xxx@juniper.net"
+        toaddr = "xxx@juniper.net"
 
         # MIMEMultipart
         msg = MIMEMultipart()
