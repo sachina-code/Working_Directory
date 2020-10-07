@@ -27,8 +27,8 @@ with open("/root/Working_Directory/CoreDump_Script/commands.txt", "r") as f:
 # Function which takes the device name as argument and sends mail when new coredump is found
 def send_mail(device):
 
-    fromaddr = "sachina@juniper.net"
-    toaddr = "sachina@juniper.net"
+    fromaddr = "xxx@juniper.net"
+    toaddr = "xxx@juniper.net"
 
     # MIMEMultipart
     msg = MIMEMultipart()
