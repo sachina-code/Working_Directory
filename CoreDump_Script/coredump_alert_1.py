@@ -71,5 +71,5 @@ for device in devices.keys():
         # Code to send mail
         # Code to call the send_mail function from sendmail Module
         sendmail.send_mail(
-            "sachina@juniper.net", "sachina@juniper.net", device, masterFileName
+            "xxx@juniper.net", "xxx@juniper.net", device, masterFileName
         )
