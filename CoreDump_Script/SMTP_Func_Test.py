@@ -8,8 +8,8 @@ from email import encoders
 
 def send_mail(device):
 
-    fromaddr = "sachina@juniper.net"
-    toaddr = "sachina@juniper.net"
+    fromaddr = "xxx"
+    toaddr = "xxx"
     masterFileName = device + "_coredump_output_Master.txt"
 
     # MIMEMultipart
